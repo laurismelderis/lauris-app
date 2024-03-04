@@ -3,10 +3,10 @@ import HeaderLink from './HeaderLink'
 
 const Header = () => {
   return (
-    <div className='w-full flex justify-around bg-black'>
-      <HeaderLink href='#'>One</HeaderLink>
-      <HeaderLink href='#'>CV</HeaderLink>
-      <HeaderLink href='#'>Three</HeaderLink>
+    <div className='w-full flex justify-around bg-black fixed'>
+      <HeaderLink href='/'>Home</HeaderLink>
+      <HeaderLink href='/cv'>CV</HeaderLink>
+      <HeaderLink href='#'>Other</HeaderLink>
     </div>
   )
 }
