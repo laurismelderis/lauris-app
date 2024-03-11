@@ -1,7 +1,8 @@
 import React from 'react'
+import Timeline from './components/Timeline'
 
 const Cv = () => {
-  return <div>Cv</div>
+  return <Timeline />
 }
 
 export default Cv
