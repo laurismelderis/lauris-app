@@ -1,18 +1,21 @@
+'use client'
+
 import React from 'react'
 import styles from './Event.module.css'
+import Date from './Date'
 
 interface EventProps {
   title?: string
   children?: React.JSX.Element | string
+  date: string
 }
 
-const Event = ({ title, children }: EventProps) => {
+const Event = ({ title, children, date }: EventProps) => {
+  const [day, month, year] = date.split('-')
+
   return (
     <div className='container flex'>
-      <div className={`flex flex-col ${styles.date}`}>
-        <div>2000</div>
-        <div className='text-lg font-light'>15th of September</div>
-      </div>
+      <Date day={parseInt(day)} month={parseInt(month)} year={parseInt(year)} />
       <div className={styles.circle} />
       <div className='container'>
         <div>{title}</div>
