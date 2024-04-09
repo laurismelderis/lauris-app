@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './Date.module.css'
 
 interface DateProps {
-  day: number
+  day?: number
   month: number
   year: number
 }
@@ -46,8 +46,9 @@ const Date = ({ day, month, year }: DateProps) => {
     >
       <div>{year}</div>
       <div className={`text-lg font-light ${styles.dateAndMonth}`}>
-        {day}
-        {datePostfixes[day % 10 < 4 ? day : 3]} of {months[month + 1]}
+        {day
+          ? `${day}${datePostfixes[(day - 1) % 10 < 4 ? (day - 1) % 10 : 3]} of ${months[month + 1]}`
+          : months[month + 1]}
       </div>
     </div>
   )
