@@ -13,9 +13,8 @@ interface EventProps {
 }
 
 const Event = ({ title, children, day, month, year }: EventProps) => (
-  <div className='container flex min-h-20'>
+  <div className='container flex min-h-20 mb-8'>
     <Date day={day} month={month} year={year} />
-    <div className={styles.circle} />
     <div className='container'>
       <div>{title}</div>
       <div className='text-2xl font-light'>{children}</div>

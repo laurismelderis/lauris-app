@@ -19,9 +19,9 @@ const Timeline = () => {
 
   return (
     <>
-      <div className='mx-auto px-8 w-4/6 text-5xl border-l-8 relative'>
-        {cvEntries.map(({ id, day, month, year, title, description }) => (
-          <Event key={id} title={title} year={year} month={month} day={day}>
+      <div className='mx-auto px-8 w-4/6 text-5xl relative'>
+        {cvEntries.map(({ day, month, year, title, description }, index) => (
+          <Event key={index} title={title} year={year} month={month} day={day}>
             {description}
           </Event>
         ))}
