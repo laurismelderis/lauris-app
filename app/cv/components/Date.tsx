@@ -3,6 +3,7 @@
 import useOnScreen from '@/app/hooks/useOnScreen'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Date.module.css'
+import { getDatePostfix, getMonthName } from '../../helpers'
 
 interface DateProps {
   day?: number
@@ -10,26 +11,11 @@ interface DateProps {
   year: number
 }
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-]
-
-const datePostfixes = ['st', 'nd', 'rd', 'th']
-
 const Date = ({ day, month, year }: DateProps) => {
   const dateRef = useRef<HTMLDivElement>(null)
   const isVisible = useOnScreen(dateRef)
+  const monthName = getMonthName(month - 1)
+  const dayPrefix = getDatePostfix(day)
 
   const [pernamentVisible, setPernamentVisible] = useState(false)
 
@@ -42,13 +28,11 @@ const Date = ({ day, month, year }: DateProps) => {
   return (
     <div
       ref={dateRef}
-      className={`flex flex-col ${styles.date} ${pernamentVisible || isVisible ? styles.dateVisible : styles.dateHidden}`}
+      className={`flex flex-col text-white ${styles.date} ${pernamentVisible || isVisible ? styles.dateVisible : styles.dateHidden}`}
     >
-      <div>{year}</div>
+      <div className='min-w-48'>{year}</div>
       <div className={`text-lg font-light ${styles.dateAndMonth}`}>
-        {day
-          ? `${day}${datePostfixes[(day - 1) % 10 < 4 ? (day - 1) % 10 : 3]} of ${months[month + 1]}`
-          : months[month + 1]}
+        {day ? `${day}${dayPrefix} of ${monthName}` : monthName}
       </div>
     </div>
   )

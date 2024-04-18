@@ -19,8 +19,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={lexend.className}>
         <Header />
-        <div style={{ height: '5.75em' }} />
-        {children}
+        <div className='relative'>{children}</div>
       </body>
     </html>
   )

@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import styles from './Event.module.css'
 import Date from './Date'
 
 interface EventProps {
@@ -13,11 +12,11 @@ interface EventProps {
 }
 
 const Event = ({ title, children, day, month, year }: EventProps) => (
-  <div className='container flex min-h-20 mb-8'>
+  <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8'>
     <Date day={day} month={month} year={year} />
-    <div className='container'>
+    <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
       <div>{title}</div>
-      <div className='text-2xl font-light'>{children}</div>
+      <div className='text-base md:text-lg font-light'>{children}</div>
     </div>
   </div>
 )

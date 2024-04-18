@@ -1,6 +1,4 @@
 .date {
-  position: absolute;
-  left: -200px;
   transition: all 2s;
 }
 

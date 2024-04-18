@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: theme('colors.dark-gray');
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,7 +14,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: black;
+  background: theme('colors.dark-gray');
+  height: 100vh;
 }
 
 @layer utilities {
