@@ -1,6 +1,6 @@
 'use client'
 
-import useOnScreen from '@/app/hooks/useOnScreen'
+import useOnScreen from '../../hooks/useOnScreen'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Date.module.css'
 import { getDatePostfix, getMonthName } from '../../helpers'

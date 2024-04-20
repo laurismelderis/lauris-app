@@ -18,7 +18,7 @@ export const cvEntries: Array<CvEntry> = [
     month: 9,
     year: 2007,
     title: 'Started Rigas 84th secondary school',
-    description: 'My favorite subject was actually math, only then sports.',
+    description: 'My favorite subject was actually **math**, only then sports.',
   },
   {
     month: 6,
@@ -50,6 +50,22 @@ export const cvEntries: Array<CvEntry> = [
     title: 'Started Rigas Techincal University at IT',
     description:
       'Initiated bachelors at IT in Rigas Technical University, at computer science and information technologies faculty.',
+  },
+  {
+    day: 5,
+    month: 5,
+    year: 2021,
+    title: 'Started journey at Accenture as intern',
+    description:
+      'Learned Spring Boot, and other frontend technologies - HTML, CSS and JavaScript. Created sample quiz project using the previously mentioned technologies. Learned React, Redux, Jest and Node.js.',
+  },
+  {
+    day: 1,
+    month: 9,
+    year: 2021,
+    title: 'Joined Accenture',
+    description:
+      'When I joined Accenture, at first I was working as junior SAP HANA engineer. But very quickly, I realised that it was not for me. So, my frontend professional experience had began.',
   },
   {
     day: 31,
