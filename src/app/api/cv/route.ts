@@ -1,11 +1,10 @@
+import Event from '@/src/models/Event'
 import connectMongoDb from '../../../libs/mongodb'
-import Event from '../../../models/Event'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const GET = async () => {
   try {
     await connectMongoDb()
-
     const events = await Event.find()
 
     return NextResponse.json(events)

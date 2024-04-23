@@ -6,7 +6,6 @@ const Timeline = () => {
   return (
     <div className='mx-auto w-4/6 relative flex flex-col gap-4'>
       <Events />
-      <EventForm />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 const datePostfixes = ['st', 'nd', 'rd', 'th']
 
-const months = [
+export const months = [
   'January',
   'February',
   'March',
@@ -27,4 +27,11 @@ export const getMonthName = (month: number | undefined) => {
     return months[month]
   }
   return ''
+}
+
+export const getMonthNumber = (month: string | undefined) => {
+  if (month && months.includes(month)) {
+    return months.indexOf(month) + 1
+  }
+  return 0
 }
