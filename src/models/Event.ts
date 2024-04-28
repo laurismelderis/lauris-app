@@ -8,7 +8,7 @@ export enum DescriptionTypes {
 
 export interface IEvent {
   _id: string
-  day?: number
+  day?: number | null
   month: number
   year: number
   title: string

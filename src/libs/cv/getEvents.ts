@@ -1,10 +1,15 @@
-const getEvents = async () => {
-  const resp = await fetch('http://localhost:3000/api/cv', {
-    next: { revalidate: 10 },
-  })
-  const data = await resp.json()
+import Event from '@/src/models/Event'
+import connectMongoDb from '../mongodb'
 
-  return data
+const getEvents = async () => {
+  try {
+    await connectMongoDb()
+    const events = await Event.find()
+
+    return events
+  } catch (error) {
+    throw new Error(String(error))
+  }
 }
 
 export default getEvents

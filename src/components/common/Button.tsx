@@ -7,6 +7,8 @@ interface ButtonProps {
   onClick?: () => void
   type?: 'primary' | 'error'
   submit?: boolean
+  name?: string
+  value?: string
 }
 
 const Button = ({
@@ -14,6 +16,8 @@ const Button = ({
   onClick,
   type = 'primary',
   submit = false,
+  name,
+  value,
 }: ButtonProps) => {
   const style = {
     primary: 'border-light-blue hover:bg-light-blue',
@@ -25,6 +29,8 @@ const Button = ({
       type={submit ? 'submit' : 'button'}
       className={`text-left border-2  p-2 w-max ${style[type]}`}
       onClick={onClick}
+      name={name}
+      value={value}
     >
       {children}
     </button>

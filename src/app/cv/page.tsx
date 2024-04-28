@@ -1,10 +1,14 @@
 import React from 'react'
-import Timeline from '../../components/cv/Timeline'
+import EventList from '../../components/cv/EventList'
+import AddEvent from '@/src/components/cv/AddEvent'
 
 const Cv = () => {
   return (
     <div className='pt-8'>
-      <Timeline />
+      <div className='mx-auto w-4/6 relative flex flex-col gap-4'>
+        <EventList />
+        <AddEvent />
+      </div>
     </div>
   )
 }

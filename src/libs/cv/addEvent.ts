@@ -1,9 +1,9 @@
 import Event, { IEvent } from '@/src/models/Event'
 import connectMongoDb from '../mongodb'
 
-export type UpdateEventProps = Omit<IEvent, '_id'>
+export type AddEventProps = Omit<IEvent, '_id'>
 
-const updateEvent = async (id: string, event: UpdateEventProps) => {
+const addEvent = async (event: AddEventProps) => {
   try {
     await connectMongoDb()
 
@@ -12,15 +12,12 @@ const updateEvent = async (id: string, event: UpdateEventProps) => {
     })
 
     const error = newEvent.validateSync()
-
     if (error) throw new Error(String(error))
 
-    await Event.findByIdAndUpdate(id, {
-      ...event,
-    })
+    await newEvent.save()
   } catch (error) {
     throw new Error(String(error))
   }
 }
 
-export default updateEvent
+export default addEvent

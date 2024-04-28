@@ -7,7 +7,7 @@ interface EventProps {
   id: string
   title?: string
   children?: React.JSX.Element | string
-  day?: number
+  day?: number | null
   month: number
   year: number
 }

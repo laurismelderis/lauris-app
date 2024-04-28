@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 interface DateProps {
   id: string
-  day?: number
+  day?: number | null
   month: number
   year: number
 }
@@ -16,7 +16,7 @@ interface DateProps {
 const Date = ({ id, day, month, year }: DateProps) => {
   const dateRef = useRef<HTMLDivElement>(null)
   const isVisible = useOnScreen(dateRef)
-  const monthName = getMonthName(month - 1)
+  const monthName = getMonthName(month)
   const dayPrefix = getDatePostfix(day)
 
   const [pernamentVisible, setPernamentVisible] = useState(false)

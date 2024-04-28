@@ -7,13 +7,19 @@ import ReactMarkdown from 'react-markdown'
 
 export const dynamic = 'force-dynamic'
 
-const Timeline = async () => {
+const EventList = async () => {
   const events = await getEvents()
 
   return (
-    <div className='mx-auto w-4/6 relative flex flex-col gap-4'>
-      <div className='flex flex-col gap-4'>
-        {events?.map(
+    <div className='flex flex-col gap-4'>
+      {events
+        ?.sort((e1: IEvent, e2: IEvent) => {
+          const date1 = new Date(e1.year, e1.month, e1.day || 1).getTime()
+          const date2 = new Date(e2.year, e2.month, e2.day || 1).getTime()
+
+          return date1 - date2
+        })
+        .map(
           (
             {
               _id,
@@ -28,8 +34,8 @@ const Timeline = async () => {
           ) => {
             return (
               <Event
-                key={_id}
-                id={_id}
+                key={_id.toString()}
+                id={_id.toString()}
                 title={title}
                 year={year}
                 month={month}
@@ -44,9 +50,8 @@ const Timeline = async () => {
             )
           }
         )}
-      </div>
     </div>
   )
 }
 
-export default Timeline
+export default EventList

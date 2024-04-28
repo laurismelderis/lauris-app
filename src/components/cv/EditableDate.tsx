@@ -1,20 +1,16 @@
-'use client'
-
-import React, { useEffect, useRef, useState } from 'react'
-import useOnScreen from '@/src/hooks/useOnScreen'
-import { getDatePostfix, getMonthName, months } from '@/src/utils/helpers'
+import React from 'react'
+import { getMonthName, months } from '@/src/utils/helpers'
 import { SelectInput, TextInput } from '../common'
+import _ from 'lodash'
 
 interface EditableDateProps {
-  id: string
-  day?: string
+  day?: string | null
   month: string
   year: string
 }
 
-const EditableDate = ({ id, day, month, year }: EditableDateProps) => {
-  const monthName = getMonthName(parseInt(month, 10) - 1)
-  const dayPrefix = getDatePostfix(parseInt(day || '0', 10))
+const EditableDate = ({ day, month, year }: EditableDateProps) => {
+  const monthName = getMonthName(parseInt(month, 10))
 
   return (
     <div
@@ -30,22 +26,21 @@ const EditableDate = ({ id, day, month, year }: EditableDateProps) => {
           defaultValue={year}
           className='w-48'
           name='year'
+          placeholder='Year'
         />
       </div>
       <div
         className={`flex items-center justify-between text-lg font-light w-full`}
       >
         <div className='flex items-center'>
-          <span>
-            <TextInput
-              variant='transparent'
-              type='number'
-              defaultValue={day}
-              className='w-5 text-left'
-              name='day'
-            />
-          </span>
-          {day ? <span> {dayPrefix} of </span> : monthName}
+          <SelectInput
+            variant='transparent'
+            name='day'
+            defaultValue={day || ''}
+            options={[''].concat(
+              _.range(31).map((num: number) => (num + 1).toString())
+            )}
+          />
         </div>
         <SelectInput
           variant='transparent'

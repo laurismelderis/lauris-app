@@ -1,3 +1,5 @@
+export { default as addEvent } from './addEvent'
 export { default as updateEvent } from './updateEvent'
 export { default as getEvent } from './getEvent'
 export { default as getEvents } from './getEvents'
+export { default as removeEvent } from './removeEvent'

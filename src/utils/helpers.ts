@@ -15,7 +15,7 @@ export const months = [
   'December',
 ]
 
-export const getDatePostfix = (day: number | undefined) => {
+export const getDatePostfix = (day: number | null | undefined) => {
   if (day && day % 100 > 10 && day % 100 < 20) {
     return datePostfixes[3]
   }
@@ -31,7 +31,7 @@ export const getMonthName = (month: number | undefined) => {
 
 export const getMonthNumber = (month: string | undefined) => {
   if (month && months.includes(month)) {
-    return months.indexOf(month) + 1
+    return months.indexOf(month)
   }
   return 0
 }
