@@ -1,11 +1,12 @@
+import Event from '@/src/models/Event'
+import connectMongoDb from '../mongodb'
+
 const getEvent = async (id: string) => {
   try {
-    const resp = await fetch(`http://localhost:3000/api/cv/${id}`, {
-      next: { revalidate: 10 },
-    })
-    const data = await resp.json()
+    await connectMongoDb()
 
-    return data
+    const event = await Event.findById(id)
+    return event
   } catch (error) {
     throw new Error(String(error))
   }

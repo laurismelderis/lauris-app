@@ -23,7 +23,7 @@ export const getDatePostfix = (day: number | undefined) => {
 }
 
 export const getMonthName = (month: number | undefined) => {
-  if (month && month >= 0 && month <= 11) {
+  if ((month || typeof month === 'number') && month >= 0 && month <= 11) {
     return months[month]
   }
   return ''

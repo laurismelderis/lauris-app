@@ -1,17 +1,12 @@
 import React from 'react'
-import ReactTextareaAutosize from 'react-textarea-autosize'
 
 interface TextareaInputProps {
   placeholder?: string
-  value?: string
+  defaultValue?: string
   name?: string
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   className?: string
   rows?: number
-  minRows?: number
-  maxRows?: number
   variant?: 'default' | 'transparent'
-  cacheMeasurements?: boolean
 }
 
 const style = {
@@ -24,39 +19,20 @@ const style = {
 }
 
 const TextareaInput = ({
-  value,
+  defaultValue,
   name = '',
-  onChange,
   placeholder = '',
   className = '',
-  minRows = 8,
-  maxRows = 8,
+  rows = 1,
   variant = 'default',
-  cacheMeasurements = false,
-}: TextareaInputProps) => {
-  let rowProps: {
-    minRows?: number
-    maxRows?: number
-    cacheMeasurements?: boolean
-  } = {
-    minRows,
-    maxRows,
-  }
-
-  if (cacheMeasurements) {
-    rowProps = { cacheMeasurements }
-  }
-
-  return (
-    <ReactTextareaAutosize
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className={`${style[variant]} ${className}`}
-      {...rowProps}
-    />
-  )
-}
+}: TextareaInputProps) => (
+  <textarea
+    name={name}
+    defaultValue={defaultValue}
+    placeholder={placeholder}
+    className={`${style[variant]} ${className}`}
+    rows={rows}
+  />
+)
 
 export default TextareaInput

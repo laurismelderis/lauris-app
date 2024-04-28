@@ -2,7 +2,7 @@ import React from 'react'
 
 interface TextInputProps {
   placeholder?: string
-  value?: string
+  defaultValue?: string
   name?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   className?: string
@@ -20,7 +20,7 @@ const style = {
 }
 
 const TextInput = ({
-  value,
+  defaultValue,
   name = '',
   onChange,
   placeholder = '',
@@ -32,8 +32,7 @@ const TextInput = ({
     <input
       name={name}
       type={type}
-      value={value}
-      onChange={onChange}
+      defaultValue={defaultValue}
       placeholder={placeholder}
       className={`${style[variant]} ${className}`}
     />

@@ -10,52 +10,26 @@ interface EditableDateProps {
   day?: string
   month: string
   year: string
-  onDayChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onMonthChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  onYearChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const EditableDate = ({
-  id,
-  day,
-  month,
-  year,
-  onDayChange,
-  onMonthChange,
-  onYearChange,
-}: EditableDateProps) => {
-  const dateRef = useRef<HTMLDivElement>(null)
-  const isVisible = useOnScreen(dateRef)
+const EditableDate = ({ id, day, month, year }: EditableDateProps) => {
   const monthName = getMonthName(parseInt(month, 10) - 1)
   const dayPrefix = getDatePostfix(parseInt(day || '0', 10))
 
-  const [pernamentVisible, setPernamentVisible] = useState(false)
-
-  useEffect(() => {
-    if (isVisible) {
-      setPernamentVisible(true)
-    }
-  }, [isVisible])
-
   return (
     <div
-      ref={dateRef}
       className={`
     flex flex-col text-white transition-all duration-[2s] 
-    ${
-      pernamentVisible || isVisible
-        ? 'opacity-100 translate-x-0'
-        : 'opacity-0 translate-x-[-200px]'
-    }
+    ${'opacity-100 translate-x-0'}
   `}
     >
       <div className='flex items-center justify-start'>
         <TextInput
           variant='transparent'
           type='number'
-          value={year}
-          onChange={onYearChange}
+          defaultValue={year}
           className='w-48'
+          name='year'
         />
       </div>
       <div
@@ -66,19 +40,19 @@ const EditableDate = ({
             <TextInput
               variant='transparent'
               type='number'
-              value={day}
-              onChange={onDayChange}
+              defaultValue={day}
               className='w-5 text-left'
+              name='day'
             />
           </span>
           {day ? <span> {dayPrefix} of </span> : monthName}
         </div>
         <SelectInput
           variant='transparent'
-          value={monthName}
+          defaultValue={monthName}
           options={months}
-          onChange={onMonthChange}
           className='grow'
+          name='month'
         />
       </div>
     </div>

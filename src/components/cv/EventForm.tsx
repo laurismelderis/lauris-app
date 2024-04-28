@@ -1,13 +1,11 @@
-'use client'
-
-import React, { useState } from 'react'
+import React from 'react'
 import TextInput from '../common/TextInput'
-import TextareaInput from '../common/TextareaInput'
 import Button from '../common/Button'
 import EditableDate from './EditableDate'
-import { getMonthNumber } from '@/src/utils/helpers'
 import { updateEvent } from '@/src/libs/cv'
-import { SelectInput } from '../common'
+import { SelectInput, TextareaInput } from '../common'
+import { getMonthNumber } from '@/src/utils/helpers'
+import { revalidatePath } from 'next/cache'
 
 export enum DescriptionTypes {
   Raw = 'RAW',
@@ -25,70 +23,51 @@ interface EventFormProps {
   descriptionType?: DescriptionTypes
 }
 
-const EventForm = (props: EventFormProps) => {
-  const [title, setTitle] = useState(props.title || '')
-  const [description, setDescription] = useState(props.description || '')
-  const [descriptionType, setDescriptionType] = useState<DescriptionTypes>(
-    props.descriptionType || DescriptionTypes.Markdown
-  )
-  const [day, setDay] = useState(props.day || '')
-  const [month, setMonth] = useState(props.month || '')
-  const [year, setYear] = useState(props.year || '')
+async function EventFormServer({
+  id,
+  day = '1',
+  month = '1',
+  year = '2000',
+  title = '',
+  description,
+  descriptionType = DescriptionTypes.Markdown,
+}: EventFormProps) {
+  async function handleUpdateEvent(formData: FormData) {
+    'use server'
 
-  const handleTitleChanged = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setTitle(e.target.value)
-  const handleDescriptionChanged = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ) => setDescription(e.target.value)
-  const handleYearChanged = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setYear(e.target.value)
-  const handleMonthChanged = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    setMonth(getMonthNumber(e.target.value).toString())
-  const handleDayChanged = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setDay(e.target.value)
-  const handleDesriptionTypeChanged = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setDescriptionType(e.target.value as DescriptionTypes)
-  }
-  const handleUpdateEvent = () => {
-    updateEvent(props.id, {
-      _id: props.id,
-      title,
-      descriptionType,
-      description,
-      day: parseInt(day, 10),
-      month: parseInt(month, 10),
-      year: parseInt(year, 10),
+    const form = {
+      day: formData.get('day') as string,
+      month: formData.get('month') as string,
+      year: formData.get('year') as string,
+      title: formData.get('title') as string,
+      description: formData.get('description') as string,
+      descriptionType: formData.get('descriptionType') as DescriptionTypes,
+    }
+
+    await updateEvent(id, {
+      _id: id,
+      title: form.title,
+      descriptionType: form.descriptionType,
+      description: form.description,
+      day: parseInt(form.day, 10),
+      month: getMonthNumber(form.month),
+      year: parseInt(form.year, 10),
     })
-      .then((resp) => console.log(resp))
-      .catch((err) => console.error(err))
+
+    revalidatePath('/cv')
   }
 
   return (
-    <div className='flex flex-col items-center'>
+    <form action={handleUpdateEvent} className='flex flex-col items-center'>
       <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8'>
-        <EditableDate
-          id={props.id}
-          day={day}
-          month={month}
-          year={year}
-          onYearChange={handleYearChanged}
-          onMonthChange={handleMonthChanged}
-          onDayChange={handleDayChanged}
-        />
+        <EditableDate id={id} day={day} month={month} year={year} />
         <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
-          <TextInput
-            variant='transparent'
-            value={title}
-            onChange={handleTitleChanged}
-          />
+          <TextInput name='title' variant='transparent' defaultValue={title} />
           <TextareaInput
+            name='description'
             variant='transparent'
-            value={description}
-            onChange={handleDescriptionChanged}
+            defaultValue={description}
             className='text-base md:text-lg font-light'
-            cacheMeasurements
           />
         </div>
       </div>
@@ -97,20 +76,20 @@ const EventForm = (props: EventFormProps) => {
           Select description type:
         </label>
         <SelectInput
-          value={descriptionType}
-          onChange={handleDesriptionTypeChanged}
           options={Object.values(DescriptionTypes)}
+          defaultValue={descriptionType}
           variant='transparent'
+          name='descriptionType'
         />
       </div>
       <div className='flex gap-4'>
-        <Button type='primary' onClick={handleUpdateEvent}>
-          Update event
+        <Button type='primary' submit>
+          Update server event
         </Button>
         <Button type='error'>Delete event</Button>
       </div>
-    </div>
+    </form>
   )
 }
 
-export default EventForm
+export default EventFormServer
