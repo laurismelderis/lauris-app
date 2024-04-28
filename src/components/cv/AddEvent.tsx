@@ -9,7 +9,7 @@ const AddEvent = () => {
 
   const handleAddEvent = () => router.push('/cv/new')
 
-  return <Button onClick={handleAddEvent}>AddEvent</Button>
+  return <Button onClick={handleAddEvent}>Add new event</Button>
 }
 
 export default AddEvent

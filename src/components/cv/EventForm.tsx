@@ -3,6 +3,8 @@ import TextInput from '../common/TextInput'
 import Button from '../common/Button'
 import EditableDate from './EditableDate'
 import { SelectInput, TextareaInput } from '../common'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 export enum DescriptionTypes {
   Raw = 'RAW',
@@ -17,22 +19,42 @@ interface EventFormProps {
   title?: string
   description?: string
   descriptionType?: DescriptionTypes
-  action?: (formData: FormData) => void
-  actionTitle?: string
+  submitSuccessTitle?: string
+  submitFailureTitle?: string
+  onSuccessSubmit?: (formData: FormData) => void
+  onFailureSubmit?: (formData: FormData) => void
 }
 
 async function EventForm({
   day = '1',
-  month = '1',
+  month = '0',
   year = '2000',
   title = '',
   description,
   descriptionType = DescriptionTypes.Markdown,
-  action,
-  actionTitle = '',
+  onSuccessSubmit,
+  onFailureSubmit,
+  submitSuccessTitle = '',
+  submitFailureTitle = '',
 }: EventFormProps) {
+  async function handleEvent(formData: FormData) {
+    'use server'
+
+    const type: string | null = formData.get('submit-button') as string
+
+    if (type) {
+      if (type === 'success' && onSuccessSubmit) {
+        onSuccessSubmit(formData)
+      } else if (type === 'failure' && onFailureSubmit) {
+        onFailureSubmit(formData)
+      }
+      revalidatePath('/cv')
+      redirect('/cv')
+    }
+  }
+
   return (
-    <form action={action} className='flex flex-col items-center'>
+    <form action={handleEvent} className='flex flex-col items-center'>
       <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8'>
         <EditableDate day={day} month={month} year={year} />
         <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
@@ -65,10 +87,10 @@ async function EventForm({
       </div>
       <div className='flex gap-4'>
         <Button type='primary' submit name='submit-button' value='success'>
-          {actionTitle}
+          {submitSuccessTitle}
         </Button>
         <Button type='error' submit name='submit-button' value='failure'>
-          Delete event
+          {submitFailureTitle}
         </Button>
       </div>
     </form>

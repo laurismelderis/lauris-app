@@ -4,11 +4,9 @@ import EventForm from '@/src/components/cv/EventForm'
 import { DescriptionTypes } from '@/src/models/Event'
 import { getMonthNumber } from '@/src/utils/helpers'
 import { AddEventProps } from '@/src/libs/cv/addEvent'
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 
 const NewCV = () => {
-  async function handleAddCv(formData: FormData) {
+  async function handleAddEvent(formData: FormData) {
     'use server'
 
     const form = {
@@ -33,14 +31,15 @@ const NewCV = () => {
     }
 
     await addEvent(newEvent)
-
-    revalidatePath('/cv')
-    redirect('/cv')
   }
 
   return (
     <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
-      <EventForm action={handleAddCv} actionTitle='Add event' />
+      <EventForm
+        onSuccessSubmit={handleAddEvent}
+        submitSuccessTitle='Add event'
+        submitFailureTitle='Cancel'
+      />
     </div>
   )
 }

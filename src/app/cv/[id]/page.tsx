@@ -1,8 +1,7 @@
 import React from 'react'
 import { getEvent, removeEvent, updateEvent } from '@/src/libs/cv'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import EventForm from '@/src/components/cv/EventForm'
-import { revalidatePath } from 'next/cache'
 import { getMonthNumber } from '@/src/utils/helpers'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 
@@ -63,22 +62,6 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
     await removeEvent(id)
   }
 
-  async function handleEvent(formData: FormData) {
-    'use server'
-
-    const type: string | null = formData.get('submit-button') as string
-
-    if (type) {
-      if (type === 'success') {
-        handleUpdateEvent(formData)
-      } else if (type === 'failure') {
-        handleRemoveEvent()
-      }
-      revalidatePath('/cv')
-      redirect('/cv')
-    }
-  }
-
   return (
     <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
       <EventForm
@@ -88,8 +71,10 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
         title={title}
         description={description}
         descriptionType={descriptionType}
-        action={handleEvent}
-        actionTitle='Update event'
+        onSuccessSubmit={handleUpdateEvent}
+        onFailureSubmit={handleRemoveEvent}
+        submitSuccessTitle='Update event'
+        submitFailureTitle='Remove event'
       />
     </div>
   )
