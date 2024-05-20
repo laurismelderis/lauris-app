@@ -5,6 +5,7 @@ import EditableDate from './EditableDate'
 import { SelectInput, TextareaInput } from '../common'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 export enum DescriptionTypes {
   Raw = 'RAW',
@@ -54,7 +55,7 @@ async function EventForm({
   }
 
   return (
-    <form action={handleEvent} className='flex flex-col items-center'>
+    <form action={handleEvent} className='flex flex-col items-center gap-4'>
       <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8'>
         <EditableDate day={day} month={month} year={year} />
         <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
@@ -93,6 +94,9 @@ async function EventForm({
           {submitFailureTitle}
         </Button>
       </div>
+      <Link href='/cv'>
+        <Button type='secondary'>Back</Button>
+      </Link>
     </form>
   )
 }
