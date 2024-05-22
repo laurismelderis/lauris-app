@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { getDatePostfix, getMonthName } from '../../utils/helpers'
 import { IconPen } from '../icons'
 import Link from 'next/link'
+import { Environments } from '@/src/utils/constants'
 
 interface DateProps {
   id: string
@@ -20,6 +21,7 @@ const Date = ({ id, day, month, year }: DateProps) => {
   const dayPrefix = getDatePostfix(day)
 
   const [pernamentVisible, setPernamentVisible] = useState(false)
+  console.log(process.env.NODE_ENV)
 
   useEffect(() => {
     if (isVisible) {
@@ -41,9 +43,11 @@ const Date = ({ id, day, month, year }: DateProps) => {
     >
       <div className='flex items-center justify-start'>
         <div className='min-w-32'>{year}</div>
-        <Link href={`/cv/${id}`}>
-          <IconPen className='cursor-pointer hover:fill-white' />
-        </Link>
+        {process.env.NODE_ENV === Environments.DEVELOPMENT ? (
+          <Link href={`/cv/${id}`}>
+            <IconPen className='cursor-pointer hover:fill-white' />
+          </Link>
+        ) : null}
       </div>
       <div className={`text-lg font-light`}>
         {day ? `${day}${dayPrefix} of ${monthName}` : monthName}
