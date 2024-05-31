@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Lexend } from 'next/font/google'
 import './globals.css'
 import Header from '../components/Header'
+import { StoreProvider } from '../store/StoreProvider'
 
 const lexend = Lexend({ subsets: ['latin'] })
 
@@ -16,11 +17,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={lexend.className}>
-        <Header />
-        <div className='relative'>{children}</div>
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang='en'>
+        <body className={lexend.className}>
+          <Header />
+          <div className='relative'>{children}</div>
+        </body>
+      </html>
+    </StoreProvider>
   )
 }

@@ -1,9 +1,7 @@
 import React from 'react'
 import { IEvent } from '@/src/models/Event'
 import { getEvents } from '@/src/libs/cv'
-import { DescriptionTypes } from './EventForm'
 import Event from './Event'
-import ReactMarkdown from 'react-markdown'
 
 export const dynamic = 'force-dynamic'
 
@@ -40,12 +38,9 @@ const EventList = async () => {
                 year={year}
                 month={month}
                 day={day}
+                descriptionType={descriptionType}
               >
-                {descriptionType === DescriptionTypes.Markdown ? (
-                  <ReactMarkdown>{description}</ReactMarkdown>
-                ) : (
-                  description || ''
-                )}
+                {description}
               </Event>
             )
           }

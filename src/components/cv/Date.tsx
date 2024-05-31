@@ -4,8 +4,8 @@ import useOnScreen from '../../hooks/useOnScreen'
 import React, { useEffect, useRef, useState } from 'react'
 import { getDatePostfix, getMonthName } from '../../utils/helpers'
 import { IconPen } from '../icons'
-import Link from 'next/link'
 import { Environments } from '@/src/utils/constants'
+import { useRouter } from 'next/navigation'
 
 interface DateProps {
   id: string
@@ -15,13 +15,14 @@ interface DateProps {
 }
 
 const Date = ({ id, day, month, year }: DateProps) => {
+  const router = useRouter()
+
   const dateRef = useRef<HTMLDivElement>(null)
   const isVisible = useOnScreen(dateRef)
   const monthName = getMonthName(month)
   const dayPrefix = getDatePostfix(day)
 
   const [pernamentVisible, setPernamentVisible] = useState(false)
-  console.log(process.env.NODE_ENV)
 
   useEffect(() => {
     if (isVisible) {
@@ -44,9 +45,10 @@ const Date = ({ id, day, month, year }: DateProps) => {
       <div className='flex items-center justify-start'>
         <div className='min-w-32'>{year}</div>
         {process.env.NODE_ENV === Environments.DEVELOPMENT ? (
-          <Link href={`/cv/${id}`}>
+          // <Link href={`/cv/${id}`}>
+          <div onClick={() => router.push(`/cv/${id}`)}>
             <IconPen className='cursor-pointer hover:fill-white' />
-          </Link>
+          </div>
         ) : null}
       </div>
       <div className={`text-lg font-light`}>

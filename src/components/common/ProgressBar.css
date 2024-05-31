@@ -1,0 +1,29 @@
+.loading-bar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.loading-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -25%;
+  width: 25%;
+  height: 100%;
+  background-color: theme('colors.light-blue');
+  animation-name: loading-animation;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading-animation {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
