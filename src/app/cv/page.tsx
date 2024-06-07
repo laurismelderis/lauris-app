@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import EventList from '../../components/cv/EventList'
 import AddEvent from '@/src/components/cv/AddEvent'
 import Loading from './loading'
+import { Environments } from '@/src/utils/constants'
 
 const Cv = () => {
   return (
@@ -10,7 +11,7 @@ const Cv = () => {
         <Suspense fallback={<Loading />}>
           <EventList />
         </Suspense>
-        <AddEvent />
+        {process.env.NODE_ENV === Environments.DEVELOPMENT ? <AddEvent /> : null }
       </div>
     </div>
   )
