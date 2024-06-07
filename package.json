@@ -47,6 +47,6 @@
     "tailwindcss": "^3.3.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5",
-    "typescript-eslint": "^7.7.1"
+    "typescript-eslint": "^7.12.0"
   }
 }
