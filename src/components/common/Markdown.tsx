@@ -21,7 +21,6 @@ const Markdown = ({ children = '' }: { children?: string }) => {
               style={docco as any}
               language={match[1]}
               PreTag='div'
-              {...props}
             >
               {String(children).replace(/\n$/, '')}
             </SyntaxHighlighter>

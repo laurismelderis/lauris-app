@@ -5,8 +5,6 @@ import EventForm from '@/src/components/cv/EventForm'
 import { getMonthNumber } from '@/src/utils/helpers'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 
-export const dymanic = 'auto'
-
 interface EventPageProps {
   params: { id: string }
 }
