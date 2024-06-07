@@ -1,4 +1,3 @@
-import { colors } from '@/tailwind.config'
 import React, { CSSProperties } from 'react'
 
 interface IconPenProps {

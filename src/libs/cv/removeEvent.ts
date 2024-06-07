@@ -1,4 +1,4 @@
-import Event, { IEvent } from '@/src/models/Event'
+import Event from '@/src/models/Event'
 import connectMongoDb from '../mongodb'
 
 const removeEvent = async (id: string) => {

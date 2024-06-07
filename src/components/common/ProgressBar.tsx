@@ -11,7 +11,6 @@ interface ProgressBarProps {
 const ProgressBar = ({
   loading = false,
   className,
-  ...rest
 }: ProgressBarProps) => {
   return (
     <div

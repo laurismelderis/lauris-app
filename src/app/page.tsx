@@ -1,9 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store/store'
-
 const Home = () => {
   return (
     <div className='flex flex-col justify-center items-center text-light-blue min-h-[calc(100vh-94px)]'>

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 interface TextInputProps {
@@ -35,6 +37,7 @@ const TextInput = ({
       defaultValue={defaultValue}
       placeholder={placeholder}
       className={`${style[variant]} ${className}`}
+      onChange={onChange}
     />
   )
 }

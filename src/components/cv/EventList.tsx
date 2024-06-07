@@ -28,7 +28,6 @@ const EventList = async () => {
               description,
               descriptionType,
             }: IEvent,
-            index: number
           ) => {
             return (
               <Event

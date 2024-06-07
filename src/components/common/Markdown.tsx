@@ -14,7 +14,7 @@ const Markdown = ({ children = '' }: { children?: string }) => {
       remarkPlugins={[remarkGfm, remarkMath]}
       rehypePlugins={[rehypeKatex]}
       components={{
-        code({ node, className, children, ...props }) {
+        code({ className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
           return match ? (
             <SyntaxHighlighter
@@ -31,8 +31,7 @@ const Markdown = ({ children = '' }: { children?: string }) => {
           )
         },
       }}
-      children={children}
-    />
+    >{children}</ReactMarkdown>
   )
 }
 

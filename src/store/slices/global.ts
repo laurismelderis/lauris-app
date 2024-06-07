@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface GlobalState {
   loading: boolean
@@ -14,8 +13,6 @@ export const globalSlice = createSlice({
   initialState,
   reducers: {
     loadingChanged: (state, { payload }) => {
-      const { loading = false } = payload
-
       state.loading = payload
     },
   },
