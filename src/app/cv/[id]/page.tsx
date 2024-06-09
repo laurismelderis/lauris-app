@@ -4,12 +4,15 @@ import { notFound } from 'next/navigation'
 import EventForm from '@/src/components/cv/EventForm'
 import { getMonthNumber } from '@/src/utils/helpers'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
+import { auth } from '@clerk/nextjs/server'
+import Unauthorized from '@/src/components/Unauthorized'
 
 interface EventPageProps {
   params: { id: string }
 }
 
 const EventPage = async ({ params: { id } }: EventPageProps) => {
+  const { has } = auth()
   let resp: IEvent
 
   try {
@@ -59,6 +62,10 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
 
     await removeEvent(id)
   }
+
+  const isAdmin = has({ role: 'org:admin' })
+
+  if (!isAdmin) return <Unauthorized />
 
   return (
     <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
