@@ -10,7 +10,7 @@ const connectMongoDb = async () => {
     if (!MONGODB_DB_NAME) throw new Error('No MongoDB DB name specified.')
     await mongoose.connect(MONGODB_URI, { dbName: MONGODB_DB_NAME })
   } catch (error) {
-    console.error(error)
+    throw new Error(error as string)
   }
 }
 

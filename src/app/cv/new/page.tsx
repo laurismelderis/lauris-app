@@ -4,8 +4,14 @@ import EventForm from '@/src/components/cv/EventForm'
 import { DescriptionTypes } from '@/src/models/Event'
 import { getMonthNumber } from '@/src/utils/helpers'
 import { AddEventProps } from '@/src/libs/cv/addEvent'
+import { auth } from '@clerk/nextjs/server'
+import Unauthorized from '@/src/components/Unauthorized'
 
 const NewCV = () => {
+  const { has } = auth()
+
+  const isAdmin = has({ role: 'org:admin' })
+
   async function handleAddEvent(formData: FormData) {
     'use server'
 
@@ -32,6 +38,8 @@ const NewCV = () => {
 
     await addEvent(newEvent)
   }
+
+  if (!isAdmin) return <Unauthorized />
 
   return (
     <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
