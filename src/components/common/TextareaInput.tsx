@@ -2,11 +2,13 @@ import React from 'react'
 
 interface TextareaInputProps {
   placeholder?: string
+  value?: string
   defaultValue?: string
   name?: string
   className?: string
   rows?: number
   variant?: 'default' | 'transparent'
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 const style = {
@@ -19,19 +21,23 @@ const style = {
 }
 
 const TextareaInput = ({
+  value,
   defaultValue,
   name = '',
   placeholder = '',
   className = '',
   rows = 1,
   variant = 'default',
+  onChange,
 }: TextareaInputProps) => (
   <textarea
+    value={value}
     name={name}
     defaultValue={defaultValue}
     placeholder={placeholder}
     className={`${style[variant]} ${className}`}
     rows={rows}
+    onChange={onChange}
   />
 )
 
