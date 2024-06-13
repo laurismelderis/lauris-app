@@ -33,7 +33,7 @@ const auth = (req: NextRequest): Response => {
 export const POST = async (req: NextRequest) => {
   try {
     const { status, message } = auth(req)
-    if (status !== 200) return NextResponse.json({ message, status })
+    if (status !== 200) return NextResponse.json({ message }, { status })
 
     const body = await req.json()
 
@@ -48,7 +48,7 @@ export const POST = async (req: NextRequest) => {
 export const PUT = async (req: NextRequest) => {
   try {
     const { status, message } = auth(req)
-    if (status !== 200) return NextResponse.json({ message, status })
+    if (status !== 200) return NextResponse.json({ message }, { status })
 
     const body = await req.json()
 
@@ -65,7 +65,7 @@ export const PUT = async (req: NextRequest) => {
 export const DELETE = async (req: NextRequest) => {
   try {
     const { status, message } = auth(req)
-    if (status !== 200) return NextResponse.json({ message, status })
+    if (status !== 200) return NextResponse.json({ message }, { status })
 
     const body = await req.json()
 

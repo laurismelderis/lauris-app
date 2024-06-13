@@ -43,10 +43,11 @@ const EditEventForm = ({
       const resp = await fetch('/api/events', {
         method: 'PUT',
         body: JSON.stringify(newEvent),
-      }).then((r) => r.json())
+      })
 
       if (resp.status !== 200) {
-        throw new Error(`Failed to update. ${resp.status}: ${resp.message}`)
+        const body = await resp.json()
+        throw new Error(`Failed to update. ${resp.status}: ${body.message}`)
       }
 
       setError('')
@@ -63,10 +64,11 @@ const EditEventForm = ({
       const resp = await fetch('/api/events', {
         method: 'DELETE',
         body: JSON.stringify({ id }),
-      }).then((r) => r.json())
+      })
 
       if (resp.status !== 200) {
-        throw new Error(`Failed to delete. ${resp.status}: ${resp.message}`)
+        const body = await resp.json()
+        throw new Error(`Failed to update. ${resp.status}: ${body.message}`)
       }
 
       setError('')
