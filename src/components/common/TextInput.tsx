@@ -8,7 +8,7 @@ interface TextInputProps {
   defaultValue?: string
   name?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  className?: string
+  className?: React.ComponentProps<'input'>['className']
   variant?: 'default' | 'transparent'
   type?: 'text' | 'number'
 }

@@ -9,7 +9,7 @@ interface SelectInputProps {
   options?: Array<string>
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   variant?: 'default' | 'transparent'
-  className?: string
+  className?: React.ComponentProps<'select'>['className']
 }
 
 const style = {

@@ -1,9 +1,10 @@
 'use client'
 
-import React from 'react'
-import EventFormClient from './EventFormClient'
+import React, { useState } from 'react'
+import EventForm from './EventForm'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 import { useRouter } from 'next/navigation'
+import Notification from '../common/Notification'
 
 type EditEventFormProps = {
   id: string
@@ -25,6 +26,7 @@ const EditEventForm = ({
   descriptionType,
 }: EditEventFormProps) => {
   const router = useRouter()
+  const [error, setError] = useState<string>()
 
   const handleUpdateEvent = async (currentEvent: Omit<IEvent, '_id'>) => {
     try {
@@ -38,14 +40,41 @@ const EditEventForm = ({
         day: currentEvent.day,
       }
 
-      await fetch('/api/events', {
+      const resp = await fetch('/api/events', {
         method: 'PUT',
         body: JSON.stringify(newEvent),
-      })
+      }).then((r) => r.json())
+
+      if (resp.status !== 200) {
+        throw new Error(`Failed to update. ${resp.status}: ${resp.message}`)
+      }
+
+      setError('')
+
       router.push('/cv')
       router.refresh()
     } catch (error) {
-      console.log(error)
+      setError(String(error))
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      const resp = await fetch('/api/events', {
+        method: 'DELETE',
+        body: JSON.stringify({ id }),
+      }).then((r) => r.json())
+
+      if (resp.status !== 200) {
+        throw new Error(`Failed to delete. ${resp.status}: ${resp.message}`)
+      }
+
+      setError('')
+
+      router.push('/cv')
+      router.refresh()
+    } catch (error) {
+      setError(String(error))
     }
   }
 
@@ -54,16 +83,20 @@ const EditEventForm = ({
   }
 
   return (
-    <EventFormClient
-      day={day}
-      month={month}
-      year={year}
-      title={title}
-      description={description}
-      descriptionType={descriptionType}
-      onSave={handleUpdateEvent}
-      onCancel={handleCancel}
-    />
+    <>
+      <Notification error={error} />
+      <EventForm
+        day={day}
+        month={month}
+        year={year}
+        title={title}
+        description={description}
+        descriptionType={descriptionType}
+        onSave={handleUpdateEvent}
+        onCancel={handleCancel}
+        onDelete={handleDelete}
+      />
+    </>
   )
 }
 

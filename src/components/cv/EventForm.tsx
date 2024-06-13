@@ -8,7 +8,7 @@ import { getMonthNumber } from '@/src/utils/helpers'
 import EditableDate from './EditableDate'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 
-type EventFormClient = {
+type EventForm = {
   day?: string | null
   month?: string
   year?: string
@@ -17,12 +17,13 @@ type EventFormClient = {
   descriptionType?: DescriptionTypes
   onSave?: (currentEvent: Omit<IEvent, '_id'>) => void
   onCancel?: () => void
+  onDelete?: () => void
 }
 
-const EventFormClient = (props: EventFormClient) => {
+const EventForm = (props: EventForm) => {
   const [title, setTitle] = useState(props.title || '')
   const [day, setDay] = useState(props.day)
-  const [month, setMonth] = useState(props.month || '')
+  const [month, setMonth] = useState(props.month || '0')
   const [year, setYear] = useState(props.year || '2000')
 
   const [description, setDescription] = useState(props.description || '')
@@ -56,6 +57,14 @@ const EventFormClient = (props: EventFormClient) => {
         description,
         descriptionType,
       })
+    }
+  }
+
+  const handleDelete = () => {
+    const { onDelete } = props
+
+    if (onDelete) {
+      onDelete()
     }
   }
 
@@ -113,7 +122,12 @@ const EventFormClient = (props: EventFormClient) => {
         <Button type='primary' value='success' onClick={handleSave}>
           Save
         </Button>
-        <Button type='error' value='failure' onClick={handleCancel}>
+        {props?.onDelete ? (
+          <Button type='error' value='failure' onClick={handleDelete}>
+            Delete
+          </Button>
+        ) : null}
+        <Button type='secondary' value='cancel' onClick={handleCancel}>
           Cancel
         </Button>
       </div>
@@ -121,4 +135,4 @@ const EventFormClient = (props: EventFormClient) => {
   )
 }
 
-export default EventFormClient
+export default EventForm

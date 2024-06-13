@@ -5,7 +5,7 @@ interface TextareaInputProps {
   value?: string
   defaultValue?: string
   name?: string
-  className?: string
+  className?: React.ComponentProps<'textarea'>['className']
   rows?: number
   variant?: 'default' | 'transparent'
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
