@@ -15,11 +15,12 @@ const AddEventForm = () => {
       const resp = await fetch('/api/events', {
         method: 'POST',
         body: JSON.stringify({ ...currentEvent }),
-      }).then((r) => r.json())
+      })
 
-      if (resp.status !== 200) {
+      if (resp.status !== 201) {
+        const body = await resp.json()
         throw new Error(
-          `Failed to create new event. ${resp.status}: ${resp.message}`
+          `Failed to create new event. ${resp.status}: ${body.message}`
         )
       }
 
