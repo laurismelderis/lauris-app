@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { IEvent } from '@/src/models/Event'
 import { auth } from '@clerk/nextjs/server'
 import Unauthorized from '@/src/components/Unauthorized'
-import EventFormClient from '@/src/components/cv/EventFormClient'
+import EditEventForm from '@/src/components/cv/EditEventForm'
 
 interface EventPageProps {
   params: { id: string }
@@ -26,19 +26,13 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
     notFound()
   }
 
-  // async function handleRemoveEvent() {
-  //   'use server'
-
-  //   await removeEvent(id)
-  // }
-
   const isAdmin = has({ role: 'org:admin' })
 
   if (!isAdmin) return <Unauthorized />
 
   return (
     <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
-      <EventFormClient
+      <EditEventForm
         id={id}
         day={day?.toString()}
         month={month.toString()}

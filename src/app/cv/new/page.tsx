@@ -5,7 +5,7 @@ import { getMonthNumber } from '@/src/utils/helpers'
 import { AddEventProps } from '@/src/libs/cv/addEvent'
 import { auth } from '@clerk/nextjs/server'
 import Unauthorized from '@/src/components/Unauthorized'
-import Link from 'next/link'
+import AddEventForm from '@/src/components/cv/AddEventForm'
 
 const NewCV = () => {
   const { has } = auth()
@@ -44,13 +44,7 @@ const NewCV = () => {
 
   return (
     <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
-      <Link href='/cv'>Return</Link>
-      {/* <EventFormClient /> */}
-      {/* <EventForm
-        onSuccessSubmit={handleAddEvent}
-        submitSuccessTitle='Add event'
-        submitFailureTitle='Cancel'
-      /> */}
+      <AddEventForm />
     </div>
   )
 }

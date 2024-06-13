@@ -6,31 +6,28 @@ import EventFormDescription from './EventFormDescription'
 import { Button, SelectInput, TextInput } from '../common'
 import { getMonthNumber } from '@/src/utils/helpers'
 import EditableDate from './EditableDate'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { DescriptionTypes } from '@/src/models/Event'
+import { DescriptionTypes, IEvent } from '@/src/models/Event'
 
 type EventFormClient = {
-  id: string
   day?: string | null
   month?: string
   year?: string
   title?: string
   description?: string
   descriptionType?: DescriptionTypes
+  onSave?: (currentEvent: Omit<IEvent, '_id'>) => void
+  onCancel?: () => void
 }
 
 const EventFormClient = (props: EventFormClient) => {
-  const router = useRouter()
-
-  const [title, setTitle] = useState(props.title)
+  const [title, setTitle] = useState(props.title || '')
   const [day, setDay] = useState(props.day)
   const [month, setMonth] = useState(props.month || '')
   const [year, setYear] = useState(props.year || '2000')
 
   const [description, setDescription] = useState(props.description || '')
   const [descriptionType, setDescriptionType] = useState(
-    props.descriptionType || DescriptionTypes.Html
+    props.descriptionType || DescriptionTypes.Raw
   )
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -47,26 +44,25 @@ const EventFormClient = (props: EventFormClient) => {
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setYear(e.target.value)
 
-  const handleUpdateEvent = async () => {
-    try {
-      const newEvent = {
-        id: props.id,
-        title,
-        descriptionType,
-        description,
-        month,
-        year: parseInt(year, 10),
-        day,
-      }
+  const handleSave = () => {
+    const { onSave } = props
 
-      await fetch('/api/events', {
-        method: 'PUT',
-        body: JSON.stringify(newEvent),
+    if (onSave) {
+      onSave({
+        day: day ? parseInt(day, 10) : null,
+        month: parseInt(month, 10),
+        year: parseInt(year, 10),
+        title,
+        description,
+        descriptionType,
       })
-      router.push('/cv')
-      router.refresh()
-    } catch (e) {
-      console.log('error', e)
+    }
+  }
+
+  const handleCancel = () => {
+    const { onCancel } = props
+    if (onCancel) {
+      onCancel()
     }
   }
 
@@ -114,16 +110,13 @@ const EventFormClient = (props: EventFormClient) => {
         />
       </div>
       <div className='flex gap-4'>
-        <Button type='primary' value='success' onClick={handleUpdateEvent}>
+        <Button type='primary' value='success' onClick={handleSave}>
           Save
         </Button>
-        <Button type='error' value='failure'>
+        <Button type='error' value='failure' onClick={handleCancel}>
           Cancel
         </Button>
       </div>
-      <Link href='/cv'>
-        <Button type='secondary'>Back</Button>
-      </Link>
     </div>
   )
 }
