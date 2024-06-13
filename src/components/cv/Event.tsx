@@ -30,11 +30,18 @@ const Event = ({
     <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
       <div>{title}</div>
       <div className='text-base md:text-lg font-light'>
-        {descriptionType === 'MARKDOWN' ? (
-          <Markdown>{children}</Markdown>
-        ) : (
-          children || ''
-        )}
+        {(() => {
+          switch (descriptionType) {
+            case 'MARKDOWN':
+              return <Markdown>{children}</Markdown>
+            case 'HTML':
+              return (
+                <div dangerouslySetInnerHTML={{ __html: children || '' }} />
+              )
+            default:
+              return children
+          }
+        })()}
       </div>
     </div>
   </div>

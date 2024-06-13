@@ -4,10 +4,11 @@ import React from 'react'
 
 interface TextInputProps {
   placeholder?: string
+  value?: string
   defaultValue?: string
   name?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  className?: string
+  className?: React.ComponentProps<'input'>['className']
   variant?: 'default' | 'transparent'
   type?: 'text' | 'number'
 }
@@ -22,6 +23,7 @@ const style = {
 }
 
 const TextInput = ({
+  value,
   defaultValue,
   name = '',
   onChange,
@@ -34,6 +36,7 @@ const TextInput = ({
     <input
       name={name}
       type={type}
+      value={value}
       defaultValue={defaultValue}
       placeholder={placeholder}
       className={`${style[variant]} ${className}`}

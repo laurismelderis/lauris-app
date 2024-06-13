@@ -1,15 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // experimental: {
-  //   esmExternals: 'loose',
-  //   serverComponentsExternalPackages: ['mongoose'],
-  // },
-  // webpack: (config) => {
-  //   config.experiments = {
-  //     topLevelAwait: true,
-  //   }
-  //   return config
-  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+        port: '',
+        pathname: '**',
+      },
+    ],
+  },
 }
 
 export default nextConfig

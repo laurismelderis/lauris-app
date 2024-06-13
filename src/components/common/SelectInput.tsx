@@ -4,11 +4,12 @@ import React from 'react'
 
 interface SelectInputProps {
   name?: string
+  value?: string
   defaultValue?: string
   options?: Array<string>
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   variant?: 'default' | 'transparent'
-  className?: string
+  className?: React.ComponentProps<'select'>['className']
 }
 
 const style = {
@@ -30,7 +31,8 @@ const style = {
 
 const SelectInput = ({
   name,
-  defaultValue = '',
+  value,
+  defaultValue,
   options = [''],
   onChange = () => {},
   variant = 'default',
@@ -39,6 +41,7 @@ const SelectInput = ({
   return (
     <select
       name={name}
+      value={value}
       defaultValue={defaultValue}
       onChange={onChange}
       className={`${className} ${style.select[variant]}`}

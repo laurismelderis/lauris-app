@@ -15,9 +15,13 @@ const updateEvent = async (id: string, event: UpdateEventProps) => {
 
     if (error) throw new Error(String(error))
 
-    await Event.findByIdAndUpdate(id, {
+    if (!id) throw new Error('Missing event id')
+
+    const response = await Event.findByIdAndUpdate(id, {
       ...event,
     })
+
+    return response
   } catch (error) {
     throw new Error(String(error))
   }

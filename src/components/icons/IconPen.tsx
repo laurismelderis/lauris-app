@@ -4,7 +4,7 @@ interface IconPenProps {
   width?: string
   height?: string
   style?: CSSProperties
-  className?: string
+  className?: React.ComponentProps<'svg'>['className']
 }
 
 const IconPen = ({
