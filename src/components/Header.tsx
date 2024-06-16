@@ -12,7 +12,7 @@ const Header = () => {
   const loading = useSelector((state: RootState) => state.global.loading)
 
   return (
-    <div className='w-full bg-dark-gray sticky top-0 z-50'>
+    <div className='w-full bg-dark-green sticky top-0 z-50'>
       <SignedIn>
         <Logout />
       </SignedIn>

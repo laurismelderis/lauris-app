@@ -2,19 +2,19 @@ import type { Config } from 'tailwindcss'
 
 interface Colors {
   transparent: string
-  'dark-gray': string
+  'dark-green': string
   gray: string
-  'light-blue': string
-  white: string
+  green: string
+  'light-green': string
   red: string
 }
 
 export const colors: Colors = {
   transparent: 'transparent',
-  'dark-gray': '#323643',
+  'dark-green': '#081C15',
   gray: '#606470',
-  'light-blue': '#93DEFF',
-  white: '#F7F7F7',
+  green: '#D9ED92',
+  'light-green': '#E0E5C6',
   red: '#F65757',
 }
 

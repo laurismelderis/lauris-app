@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: theme('colors.dark-gray');
+  --foreground-rgb: theme('colors.dark-green');
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,7 +14,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: theme('colors.dark-gray');
+  background: theme('colors.dark-green');
   height: 100vh;
 }
 
@@ -34,12 +34,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.white');
+  background: theme('colors.light-green');
   border-radius: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.light-blue');
+  background: theme('colors.green');
 }
 
 ::-webkit-scrollbar-corner {

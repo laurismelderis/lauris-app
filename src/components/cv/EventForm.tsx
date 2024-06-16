@@ -86,7 +86,7 @@ const EventForm = (props: EventForm) => {
           onMonthChange={handleMonthChange}
           onYearChange={handleYearChange}
         />
-        <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
+        <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-green'>
           <TextInput
             variant='transparent'
             placeholder='Title'
