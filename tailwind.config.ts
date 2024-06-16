@@ -15,7 +15,7 @@ export const colors: Colors = {
   gray: '#606470',
   green: '#D9ED92',
   'light-green': '#E0E5C6',
-  red: '#F65757',
+  red: '#F21515',
 }
 
 const config: Config = {

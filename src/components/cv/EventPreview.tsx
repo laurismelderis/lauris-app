@@ -16,7 +16,12 @@ const EventPreview = ({
       case 'MARKDOWN':
         return <Markdown>{description}</Markdown>
       case 'HTML':
-        return <div dangerouslySetInnerHTML={{ __html: description }} />
+        return (
+          <div
+            className='text-light-green'
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        )
       default:
         return description
     }

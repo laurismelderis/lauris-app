@@ -12,7 +12,7 @@ const HeaderLink = ({ href, children }: HeaderLinkProps) => {
   return (
     <Link
       href={href}
-      className='text-xl text-center cursor-pointer font-extralight text-light-green p-8 w-full hover:bg-green'
+      className='text-xl text-center cursor-pointer font-extralight text-light-green p-8 w-full hover:bg-green hover:text-dark-green'
     >
       {children}
     </Link>
