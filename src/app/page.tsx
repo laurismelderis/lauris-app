@@ -2,7 +2,7 @@
 
 const Home = () => {
   return (
-    <div className='flex flex-col justify-center items-center text-green min-h-[calc(100vh-100px)]'>
+    <div className='flex flex-col justify-center items-center text-green min-h-[calc(100dvh-100px)]'>
       <div className='text-4xl md:text-9xl text-center font-extralight p-6'>
         Lauris Melderis
       </div>
