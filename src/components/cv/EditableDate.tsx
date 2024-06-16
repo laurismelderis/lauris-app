@@ -27,7 +27,7 @@ const EditableDate = ({
   return (
     <div
       className={`
-    flex flex-col text-white transition-all duration-[2s] 
+    flex flex-col text-light-green transition-all duration-[2s] 
     ${'opacity-100 translate-x-0'}
   `}
     >

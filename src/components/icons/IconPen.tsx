@@ -22,7 +22,7 @@ const IconPen = ({
       data-name='24x24/On Light/Edit'
       xmlns='http://www.w3.org/2000/svg'
       style={style}
-      className={`fill-light-blue ${className}`}
+      className={`fill-green ${className}`}
     >
       <rect id='view-box' width='24' height='24' fill='none' />
       <path

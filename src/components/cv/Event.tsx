@@ -25,9 +25,9 @@ const Event = ({
   year,
   descriptionType,
 }: EventProps) => (
-  <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8'>
+  <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8 text-light-green'>
     <Date id={id} day={day} month={month} year={year} />
-    <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-light-blue'>
+    <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-green'>
       <div>{title}</div>
       <div className='text-base md:text-lg font-light'>
         {(() => {

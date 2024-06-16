@@ -20,8 +20,8 @@ const Button = ({
   value,
 }: ButtonProps) => {
   const style = {
-    primary: 'border-light-blue hover:bg-light-blue',
-    secondary: 'border-gray hover:bg-light-blue',
+    primary: 'border-green hover:bg-green',
+    secondary: 'border-gray hover:bg-green',
     error: 'border-red hover:bg-red',
   }
 

@@ -8,13 +8,10 @@ interface ProgressBarProps {
   className?: React.ComponentProps<'div'>['className']
 }
 
-const ProgressBar = ({
-  loading = false,
-  className,
-}: ProgressBarProps) => {
+const ProgressBar = ({ loading = false, className }: ProgressBarProps) => {
   return (
     <div
-      className={`w-full h-2 ${loading ? 'bg-gray' : 'bg-light-blue'} ${className}`}
+      className={`w-full h-2 ${loading ? 'bg-gray' : 'bg-green'} ${className}`}
     >
       {loading ? <div className='loading-bar' /> : null}
     </div>
