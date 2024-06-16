@@ -16,15 +16,15 @@ const style = {
   select: {
     default: 'text-dark-green',
     transparent: `
-      bg-transparent text-white border-b-2 border-transparent 
+      bg-transparent text-light-green border-b-2 border-transparent 
       focus-visible:outline-none focus-visible:border-green focus-visible:border-b-2
-      hover:border-white hover:border-b-2
+      hover:border-light-green hover:border-b-2
     `,
   },
   option: {
     default: 'text-dark-green',
     transparent: `
-      bg-gray hover:bg-white
+      bg-gray hover:bg-light-green
     `,
   },
 }

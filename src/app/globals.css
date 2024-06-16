@@ -34,7 +34,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.white');
+  background: theme('colors.light-green');
   border-radius: 0.5em;
 }
 
