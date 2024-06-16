@@ -11,10 +11,10 @@ interface Colors {
 
 export const colors: Colors = {
   transparent: 'transparent',
-  'dark-gray': '#323643',
+  'dark-gray': '#081c15',
   gray: '#606470',
-  'light-blue': '#93DEFF',
-  white: '#F7F7F7',
+  'light-blue': '#d9ed92',
+  white: '#dde5b6', // d9ed92
   red: '#F65757',
 }
 
