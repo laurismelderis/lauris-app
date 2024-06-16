@@ -8,7 +8,7 @@ const Login = async () => {
 
   if (!user) {
     return (
-      <div className='flex flex-col justify-center items-center text-light-blue min-h-[calc(100vh-100px)]'>
+      <div className='flex flex-col justify-center items-center text-green min-h-[calc(100vh-100px)]'>
         <SignIn />
       </div>
     )

@@ -14,11 +14,11 @@ interface TextInputProps {
 }
 
 const style = {
-  default: 'p-2 text-dark-gray',
+  default: 'p-2 text-dark-green',
   transparent: `
-    text-white bg-transparent border-b-2 border-transparent 
-    focus-visible:outline-none focus-visible:border-light-blue focus-visible:border-b-2
-    hover:border-white hover:border-b-2
+    text-light-green bg-transparent border-b-2 border-transparent 
+    focus-visible:outline-none focus-visible:border-green focus-visible:border-b-2
+    hover:border-light-green hover:border-b-2
   `,
 }
 

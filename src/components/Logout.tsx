@@ -11,7 +11,7 @@ const Logout = () => {
   const handleSignout = () => signOut({ redirectUrl: pathname })
 
   return (
-    <button className='w-full p-4 hover:bg-light-blue' onClick={handleSignout}>
+    <button className='w-full p-4 hover:bg-green' onClick={handleSignout}>
       Log out
     </button>
   )
