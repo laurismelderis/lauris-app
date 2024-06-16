@@ -31,7 +31,9 @@ const Markdown = ({ children = '' }: { children?: string }) => {
           )
         },
       }}
-    >{children}</ReactMarkdown>
+    >
+      {children}
+    </ReactMarkdown>
   )
 }
 

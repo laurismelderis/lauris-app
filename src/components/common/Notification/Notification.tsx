@@ -20,7 +20,13 @@ const Notification = ({
   }
 
   if (error && error.length > 0) {
-    return <div className={`w-full flex bg-red p-2 ${className}`}>{error}</div>
+    return (
+      <div
+        className={`w-full text-flex bg-red text-light-green p-2 ${className}`}
+      >
+        {error}
+      </div>
+    )
   }
 
   return success
