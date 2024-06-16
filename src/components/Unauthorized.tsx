@@ -1,8 +1,13 @@
 import React from 'react'
+import usePageHeightClassName from '../hooks/usePageHeightClassName'
 
 const Unauthorized = () => {
+  const heightClassName = usePageHeightClassName()
+
   return (
-    <div className='flex flex-col justify-center items-center text-green min-h-[calc(100dvh-100px)]'>
+    <div
+      className={`flex flex-col justify-center items-center text-green ${heightClassName}`}
+    >
       Unauthorized
     </div>
   )
