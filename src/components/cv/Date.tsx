@@ -43,7 +43,7 @@ const Date = ({ id, day, month, year }: DateProps) => {
       `}
     >
       <div className='flex items-center justify-start'>
-        <div className='min-w-32'>{year}</div>
+        <div className='min-w-32 text-light-blue'>{year}</div>
         <Protect role='org:admin'>
           <div onClick={() => router.push(`/cv/${id}`)}>
             <IconPen className='cursor-pointer hover:fill-white' />
