@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import EventForm from './EventForm'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 import { useRouter } from 'next/navigation'
-import Notification from '../common/Notification'
+import Notification from '../../../components/common/Notification'
 
 type EditEventFormProps = {
   id: string

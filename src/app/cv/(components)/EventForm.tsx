@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import EventPreview from './EventPreview'
 import EventFormDescription from './EventFormDescription'
-import { Button, SelectInput, TextInput } from '../common'
+import { Button, SelectInput, TextInput } from '../../../components/common'
 import { getMonthNumber } from '@/src/utils/helpers'
 import EditableDate from './EditableDate'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'

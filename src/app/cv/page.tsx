@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
-import EventList from '../../components/cv/EventList'
-import AddEvent from '@/src/components/cv/AddEvent'
+import EventList from './(components)/EventList'
+import AddEvent from '@/src/app/cv/(components)/AddEvent'
 import Loading from './loading'
 import { auth } from '@clerk/nextjs/server'
 

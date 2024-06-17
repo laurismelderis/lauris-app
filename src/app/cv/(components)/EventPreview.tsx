@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { DescriptionTypes } from '@/src/models/Event'
-import Markdown from '../common/Markdown'
+import Markdown from '../../../components/common/Markdown'
 
 const EventPreview = ({
   descriptionType,

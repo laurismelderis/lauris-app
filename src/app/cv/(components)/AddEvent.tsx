@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Button } from '../common'
+import { Button } from '../../../components/common'
 import { useRouter } from 'next/navigation'
 
 const AddEvent = () => {

@@ -1,9 +1,9 @@
 'use client'
 
-import useOnScreen from '../../hooks/useOnScreen'
+import useOnScreen from '../../../hooks/useOnScreen'
 import React, { useEffect, useRef, useState } from 'react'
-import { getDatePostfix, getMonthName } from '../../utils/helpers'
-import { IconPen } from '../icons'
+import { getDatePostfix, getMonthName } from '../../../utils/helpers'
+import { IconPen } from '../../../components/icons'
 import { useRouter } from 'next/navigation'
 import { Protect } from '@clerk/nextjs'
 

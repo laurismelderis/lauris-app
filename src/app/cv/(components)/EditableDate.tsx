@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { getMonthName, months } from '@/src/utils/helpers'
-import { SelectInput, TextInput } from '../common'
+import { SelectInput, TextInput } from '../../../components/common'
 import _ from 'lodash'
 
 interface EditableDateProps {

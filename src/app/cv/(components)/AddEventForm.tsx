@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import EventForm from './EventForm'
 import { useRouter } from 'next/navigation'
 import { IEvent } from '@/src/models/Event'
-import Notification from '../common/Notification'
+import Notification from '../../../components/common/Notification'
 
 const AddEventForm = () => {
   const router = useRouter()
