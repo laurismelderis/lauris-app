@@ -1,6 +1,6 @@
-import { addEvent, removeEvent, updateEvent } from '@/src/libs/cv'
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '../_utils'
+import { addTodo, removeTodo, updateTodo } from '@/src/libs/todo'
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -9,7 +9,7 @@ export const POST = async (req: NextRequest) => {
 
     const body = await req.json()
 
-    const resp = await addEvent({ ...body })
+    const resp = await addTodo({ ...body })
 
     return NextResponse.json({ message: resp }, { status: 201 })
   } catch (error) {
@@ -26,7 +26,7 @@ export const PUT = async (req: NextRequest) => {
 
     const { id, ...rest } = body
 
-    const resp = await updateEvent(id, { ...rest })
+    const resp = await updateTodo(id, { ...rest })
 
     return NextResponse.json({ message: resp }, { status: 200 })
   } catch (error) {
@@ -43,7 +43,7 @@ export const DELETE = async (req: NextRequest) => {
 
     const { id } = body
 
-    const resp = await removeEvent(id)
+    const resp = await removeTodo(id)
 
     return NextResponse.json({ message: resp }, { status: 200 })
   } catch (error) {

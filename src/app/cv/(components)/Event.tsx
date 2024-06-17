@@ -4,7 +4,7 @@ import React from 'react'
 import Date from './Date'
 
 import 'katex/dist/katex.min.css'
-import Markdown from '../common/Markdown'
+import Markdown from '../../../components/common/Markdown'
 
 interface EventProps {
   id: string

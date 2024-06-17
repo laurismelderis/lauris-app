@@ -3,6 +3,7 @@
 import { useClerk } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import HeaderLink from './HeaderLink'
 
 const Logout = () => {
   const pathname = usePathname()
@@ -10,14 +11,7 @@ const Logout = () => {
 
   const handleSignout = () => signOut({ redirectUrl: pathname })
 
-  return (
-    <button
-      className='w-full p-4 text-light-green hover:bg-green hover:text-dark-green'
-      onClick={handleSignout}
-    >
-      Log out
-    </button>
-  )
+  return <HeaderLink onClick={handleSignout}>Log out</HeaderLink>
 }
 
 export default Logout
