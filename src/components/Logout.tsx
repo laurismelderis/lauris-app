@@ -9,7 +9,7 @@ const Logout = () => {
   const pathname = usePathname()
   const { signOut } = useClerk()
 
-  const handleSignout = () => signOut({ redirectUrl: pathname })
+  const handleSignout = () => signOut({ redirectUrl: pathname || '/' })
 
   return <HeaderLink onClick={handleSignout}>Log out</HeaderLink>
 }
