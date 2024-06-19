@@ -20,7 +20,16 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
     notFound()
   }
 
-  const { _id, day, month, year, title, description, descriptionType } = resp
+  const {
+    _id,
+    day,
+    month,
+    year,
+    title,
+    description,
+    descriptionType,
+    isDraft,
+  } = resp
 
   if (!_id) {
     notFound()
@@ -40,6 +49,7 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
         title={title}
         description={description}
         descriptionType={descriptionType}
+        isDraft={isDraft}
       />
     </div>
   )
