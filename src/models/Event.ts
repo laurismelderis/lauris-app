@@ -14,6 +14,7 @@ export interface IEvent {
   title: string
   description?: string
   descriptionType: DescriptionTypes
+  isDraft: boolean
 }
 
 const eventSchema = new Schema<IEvent>({
@@ -26,6 +27,10 @@ const eventSchema = new Schema<IEvent>({
     type: String,
     enum: ['RAW', 'MARKDOWN', 'HTML'],
     default: DescriptionTypes.Markdown,
+  },
+  isDraft: {
+    type: Boolean,
+    default: false,
   },
 })
 

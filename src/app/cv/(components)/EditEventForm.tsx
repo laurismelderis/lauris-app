@@ -14,6 +14,7 @@ type EditEventFormProps = {
   title?: string
   description?: string
   descriptionType?: DescriptionTypes
+  isDraft?: boolean
 }
 
 const EditEventForm = ({
@@ -24,6 +25,7 @@ const EditEventForm = ({
   title,
   description,
   descriptionType,
+  isDraft,
 }: EditEventFormProps) => {
   const router = useRouter()
   const [error, setError] = useState<string>()
@@ -38,6 +40,7 @@ const EditEventForm = ({
         month: currentEvent.month,
         year: currentEvent.year,
         day: currentEvent.day,
+        isDraft: currentEvent.isDraft,
       }
 
       const resp = await fetch('/api/events', {
@@ -97,6 +100,7 @@ const EditEventForm = ({
         onSave={handleUpdateEvent}
         onCancel={handleCancel}
         onDelete={handleDelete}
+        isDraft={isDraft}
       />
     </>
   )

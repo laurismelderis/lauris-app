@@ -18,6 +18,7 @@ type EventForm = {
   onSave?: (currentEvent: Omit<IEvent, '_id'>) => void
   onCancel?: () => void
   onDelete?: () => void
+  isDraft?: boolean
 }
 
 const EventForm = (props: EventForm) => {
@@ -25,6 +26,7 @@ const EventForm = (props: EventForm) => {
   const [day, setDay] = useState(props.day)
   const [month, setMonth] = useState(props.month || '0')
   const [year, setYear] = useState(props.year || '2000')
+  const [isDraft, setIsDraft] = useState(props.isDraft || false)
 
   const [description, setDescription] = useState(props.description || '')
   const [descriptionType, setDescriptionType] = useState(
@@ -44,6 +46,8 @@ const EventForm = (props: EventForm) => {
   }
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setYear(e.target.value)
+  const handleIsDraftChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setIsDraft(e.target.value === 'Yes' ? true : false)
 
   const handleSave = () => {
     const { onSave } = props
@@ -56,6 +60,7 @@ const EventForm = (props: EventForm) => {
         title,
         description,
         descriptionType,
+        isDraft,
       })
     }
   }
@@ -100,17 +105,31 @@ const EventForm = (props: EventForm) => {
           />
         </div>
       </div>
-      <div className='flex gap-4 items-center w-full'>
-        <label className='w-48 text-right border-b-2 border-transparent'>
-          Select description type:
-        </label>
-        <SelectInput
-          options={Object.values(DescriptionTypes)}
-          value={descriptionType}
-          onChange={handleDescriptionTypeChange}
-          variant='transparent'
-          name='descriptionType'
-        />
+      <div className='w-full flex flex-col items-start justify-start gap-4'>
+        <div className='flex flex-row gap-4 items-start justify-start w-full'>
+          <label className='w-48 text-right border-b-2 border-transparent'>
+            Select description type:
+          </label>
+          <SelectInput
+            options={Object.values(DescriptionTypes)}
+            value={descriptionType}
+            onChange={handleDescriptionTypeChange}
+            variant='transparent'
+            name='descriptionType'
+          />
+        </div>
+        <div className='flex flex-row gap-4 items-start justify-start w-full'>
+          <label className='w-48 text-right border-b-2 border-transparent'>
+            Is draft:
+          </label>
+          <SelectInput
+            options={['Yes', 'No']}
+            value={isDraft ? 'Yes' : 'No'}
+            onChange={handleIsDraftChange}
+            variant='transparent'
+            name='isDraft'
+          />
+        </div>
       </div>
       <div>
         <EventPreview

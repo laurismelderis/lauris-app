@@ -18,17 +18,16 @@ const EventList = async () => {
           return date1 - date2
         })
         .map(
-          (
-            {
-              _id,
-              day,
-              month,
-              year,
-              title,
-              description,
-              descriptionType,
-            }: IEvent,
-          ) => {
+          ({
+            _id,
+            day,
+            month,
+            year,
+            title,
+            description,
+            descriptionType,
+            isDraft,
+          }: IEvent) => {
             return (
               <Event
                 key={_id.toString()}
@@ -38,6 +37,7 @@ const EventList = async () => {
                 month={month}
                 day={day}
                 descriptionType={descriptionType}
+                isDraft={isDraft}
               >
                 {description}
               </Event>
