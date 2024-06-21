@@ -1,18 +1,12 @@
-import React, { CSSProperties } from 'react'
-
-interface IconPenProps {
-  width?: string
-  height?: string
-  style?: CSSProperties
-  className?: React.ComponentProps<'svg'>['className']
-}
+import React from 'react'
+import { IconProps } from '.'
 
 const IconPen = ({
   width = '32px',
   height = '32px',
   style,
   className,
-}: IconPenProps) => {
+}: IconProps) => {
   return (
     <svg
       width={width}
