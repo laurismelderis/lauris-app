@@ -4,7 +4,7 @@ const usePageHeightClassName = () => {
   const { userId } = auth()
 
   if (userId) {
-    return 'min-h-[calc(100dvh-156px)]'
+    return 'min-h-[calc(100dvh-192px)]'
   }
   return 'min-h-[calc(100dvh-100px)]'
 }
