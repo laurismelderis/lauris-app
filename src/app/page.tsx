@@ -1,4 +1,5 @@
 import usePageHeightClassName from '../hooks/usePageHeightClassName'
+import Clock from './(components)/Clock'
 import SocialMediaLinks from './(components)/SocialMediaLinks'
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div
       className={`flex flex-col justify-center items-center text-green gap-6 ${heightClassName}`}
     >
+      <Clock />
       <div className='text-4xl md:text-9xl text-center font-extralight'>
         Lauris Melderis
       </div>
