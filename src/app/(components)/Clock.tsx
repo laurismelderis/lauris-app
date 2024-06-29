@@ -4,7 +4,7 @@ import React, { CSSProperties, useEffect } from 'react'
 import SecondsPointer from './SecondsPointer'
 import MinutesPointer from './MinutesPointer'
 import HoursPointer from './HoursPointer'
-import ClockTicks from './ClockTicks'
+import ClockTickNumbers from './ClockTickNumbers'
 
 type ClockProps = {
   width?: string
@@ -46,7 +46,7 @@ const Clock = (props: ClockProps) => {
   return (
     <>
       <div className='flex items-center justify-center w-64 h-64 border-4 rounded-full relative'>
-        <ClockTicks />
+        <ClockTickNumbers />
         <SecondsPointer id='clock-seconds-pointer' />
         <MinutesPointer id='clock-minutes-pointer' />
         <HoursPointer id='clock-hours-pointer' />

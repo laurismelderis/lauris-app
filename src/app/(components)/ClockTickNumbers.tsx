@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ClockTicks = () => {
+const ClockTickNumbers = () => {
   return (
     <div className='w-full h-full [&_*]:absolute'>
       <div style={{ right: '25%', top: '6.5%' }}>1</div>
@@ -19,4 +19,4 @@ const ClockTicks = () => {
   )
 }
 
-export default ClockTicks
+export default ClockTickNumbers
