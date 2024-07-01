@@ -5,6 +5,7 @@ import SecondsPointer from './SecondsPointer'
 import MinutesPointer from './MinutesPointer'
 import HoursPointer from './HoursPointer'
 import ClockTickNumbers from './ClockTickNumbers'
+import { getLatviaTime } from '@/src/utils/helpers'
 
 type ClockProps = {
   width?: string
@@ -18,7 +19,7 @@ const Clock = (props: ClockProps) => {
   useEffect(() => {
     const runner = setInterval(() => {
       const secondsPointer = document.getElementById('clock-seconds-pointer')
-      const date = new Date()
+      const date = getLatviaTime()
       if (secondsPointer) {
         const seconds = date.getSeconds()
         const currentRotation = ((seconds + 1) / 60) * 360 + 90
@@ -45,7 +46,7 @@ const Clock = (props: ClockProps) => {
 
   return (
     <>
-      <div className='flex items-center justify-center w-64 h-64 border-4 rounded-full relative'>
+      <div className='relative flex h-32 w-32 items-center justify-center rounded-full border-2 md:h-48 md:w-48 lg:border-2'>
         <ClockTickNumbers />
         <SecondsPointer id='clock-seconds-pointer' />
         <MinutesPointer id='clock-minutes-pointer' />

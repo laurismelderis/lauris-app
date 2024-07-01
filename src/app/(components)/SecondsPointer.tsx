@@ -6,9 +6,9 @@ type SecondsPointerProps = {
 
 const SecondsPointer = ({ id }: SecondsPointerProps) => {
   return (
-    <div className='w-full h-full flex items-center absolute' id={id}>
-      <div className='w-1/12 h-1 bg-transparent origin-center'></div>
-      <div className='w-5/12 h-1 bg-green origin-center' />
+    <div className='absolute flex h-full w-full items-center' id={id}>
+      <div className='h-[1px] w-1/12 origin-center bg-transparent lg:h-[2px]'></div>
+      <div className='h-[1px] w-5/12 origin-center bg-green lg:h-[2px]' />
     </div>
   )
 }

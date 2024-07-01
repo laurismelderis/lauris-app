@@ -6,9 +6,9 @@ type MinutesPointerProps = {
 
 const MinutesPointer = ({ id }: MinutesPointerProps) => {
   return (
-    <div className='w-full h-full flex items-center absolute' id={id}>
-      <div className='w-2/12 h-1 bg-transparent origin-center'></div>
-      <div className='w-4/12 h-1 bg-green origin-center' />
+    <div className='absolute flex h-full w-full items-center' id={id}>
+      <div className='h-[2px] w-2/12 origin-center bg-transparent lg:h-[3px]'></div>
+      <div className='h-[2px] w-4/12 origin-center bg-green lg:h-[3px]' />
     </div>
   )
 }

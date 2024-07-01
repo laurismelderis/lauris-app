@@ -4,6 +4,32 @@
 
 :root {
   --foreground-rgb: theme('colors.dark-green');
+  --pi: 3.141592653589793;
+  --deg0: calc(0 * (var(--pi) / 180));
+  --deg15: calc(15 * (var(--pi) / 180));
+  --deg30: calc(30 * (var(--pi) / 180));
+  --deg45: calc(45 * (var(--pi) / 180));
+  --deg60: calc(60 * (var(--pi) / 180));
+  --deg75: calc(75 * (var(--pi) / 180));
+  --deg90: calc(90 * (var(--pi) / 180));
+  --deg105: calc(105 * (var(--pi) / 180));
+  --deg120: calc(120 * (var(--pi) / 180));
+  --deg135: calc(135 * (var(--pi) / 180));
+  --deg150: calc(150 * (var(--pi) / 180));
+  --deg165: calc(165 * (var(--pi) / 180));
+  --deg180: calc(180 * (var(--pi) / 180));
+  --deg195: calc(195 * (var(--pi) / 180));
+  --deg210: calc(210 * (var(--pi) / 180));
+  --deg225: calc(225 * (var(--pi) / 180));
+  --deg240: calc(240 * (var(--pi) / 180));
+  --deg255: calc(255 * (var(--pi) / 180));
+  --deg270: calc(270 * (var(--pi) / 180));
+  --deg285: calc(285 * (var(--pi) / 180));
+  --deg300: calc(300 * (var(--pi) / 180));
+  --deg315: calc(315 * (var(--pi) / 180));
+  --deg330: calc(330 * (var(--pi) / 180));
+  --deg345: calc(345 * (var(--pi) / 180));
+  --deg360: calc(360 * (var(--pi) / 180));
 }
 
 @media (prefers-color-scheme: dark) {

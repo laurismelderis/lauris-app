@@ -35,3 +35,21 @@ export const getMonthNumber = (month: string | undefined) => {
   }
   return 0
 }
+
+// UTC +3
+export const LATVIA_TIMEZONE_OFFSET = 3
+
+export const getUtcTime = (): Date => {
+  const date = new Date()
+  const localTime = date.getTime()
+  const localOffset = date.getTimezoneOffset() * 60_000
+  const utc = localTime + localOffset
+
+  return new Date(utc)
+}
+
+export const getLatviaTime = (): Date => {
+  const utc = getUtcTime().getTime()
+
+  return new Date(utc + 3_600_000 * LATVIA_TIMEZONE_OFFSET)
+}

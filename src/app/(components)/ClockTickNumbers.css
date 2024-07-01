@@ -1,0 +1,59 @@
+.deg0 {
+  top: calc(100% - (((1 + sin(var(--deg0))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg0))) / 2) * 100%);
+}
+
+.deg30 {
+  top: calc(100% - (((1 + sin(var(--deg30))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg30))) / 2) * 100%);
+}
+
+.deg60 {
+  top: calc(100% - (((1 + sin(var(--deg60))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg60))) / 2) * 100%);
+}
+
+.deg90 {
+  top: calc(100% - (((1 + sin(var(--deg90))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg90))) / 2) * 100%);
+}
+
+.deg120 {
+  top: calc(100% - (((1 + sin(var(--deg120))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg120))) / 2) * 100%);
+}
+
+.deg150 {
+  top: calc(100% - (((1 + sin(var(--deg150))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg150))) / 2) * 100%);
+}
+
+.deg180 {
+  top: calc(100% - (((1 + sin(var(--deg180))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg180))) / 2) * 100%);
+}
+
+.deg210 {
+  top: calc(100% - (((1 + sin(var(--deg210))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg210))) / 2) * 100%);
+}
+
+.deg240 {
+  top: calc(100% - (((1 + sin(var(--deg240))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg240))) / 2) * 100%);
+}
+
+.deg270 {
+  top: calc(100% - (((1 + sin(var(--deg270))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg270))) / 2) * 100%);
+}
+
+.deg300 {
+  top: calc(100% - (((1 + sin(var(--deg300))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg300))) / 2) * 100%);
+}
+
+.deg330 {
+  top: calc(100% - (((1 + sin(var(--deg330))) / 2) * 100%));
+  left: calc(((1 + cos(var(--deg330))) / 2) * 100%);
+}
