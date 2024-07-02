@@ -10,13 +10,11 @@ const Cv = () => {
   const isAdmin = has({ role: 'org:admin' })
 
   return (
-    <div className='pt-8'>
-      <div className='mx-auto w-4/6 relative flex flex-col gap-4'>
-        <Suspense fallback={<Loading />}>
-          <EventList />
-        </Suspense>
-        {isAdmin ? <AddEvent /> : null}
-      </div>
+    <div className='relative mx-auto flex w-4/6 flex-col gap-4'>
+      <Suspense fallback={<Loading />}>
+        <EventList />
+      </Suspense>
+      {isAdmin ? <AddEvent /> : null}
     </div>
   )
 }

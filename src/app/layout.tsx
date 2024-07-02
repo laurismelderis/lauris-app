@@ -23,7 +23,7 @@ export default function RootLayout({
         <html lang='en'>
           <body className={lexend.className}>
             <Header />
-            <div className='relative'>{children}</div>
+            <div className='relative py-8'>{children}</div>
           </body>
         </html>
       </StoreProvider>

@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 
 const DigitalClock = () => {
   useEffect(() => {
-    const runner = setInterval(() => {
+    const updateClock = () => {
       const digitalClock = document.getElementById('digital-clock')
 
       if (digitalClock) {
@@ -21,6 +21,12 @@ const DigitalClock = () => {
         }
         digitalClock.innerHTML = `${hours}:${minutes}`
       }
+    }
+
+    updateClock()
+
+    const runner = setInterval(() => {
+      updateClock()
     }, 1000)
 
     return () => {

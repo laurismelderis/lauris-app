@@ -40,7 +40,7 @@ const EventPage = async ({ params: { id } }: EventPageProps) => {
   if (!isAdmin) return <Unauthorized />
 
   return (
-    <div className='pt-8 mx-auto w-4/6 relative flex flex-col gap-4'>
+    <div className='relative mx-auto flex w-4/6 flex-col gap-4'>
       <EditEventForm
         id={id}
         day={day?.toString()}
