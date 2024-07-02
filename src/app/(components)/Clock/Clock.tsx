@@ -17,7 +17,7 @@ type ClockProps = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Clock = (props: ClockProps) => {
   useEffect(() => {
-    const runner = setInterval(() => {
+    const updateClock = () => {
       const secondsPointer = document.getElementById('clock-seconds-pointer')
       const date = getLatviaTime()
       if (secondsPointer) {
@@ -34,9 +34,16 @@ const Clock = (props: ClockProps) => {
       const hoursPointer = document.getElementById('clock-hours-pointer')
       if (hoursPointer) {
         const hours = date.getHours()
-        const currentRotation = (((hours % 12) + 1) / 12) * 360 + 90
+        const currentRotation = ((hours % 12) / 12) * 360 + 90
         hoursPointer.style.rotate = currentRotation + 'deg'
       }
+    }
+
+    // Remove lag on component render
+    updateClock()
+
+    const runner = setInterval(() => {
+      updateClock()
     }, 1000)
 
     return () => {

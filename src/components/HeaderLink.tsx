@@ -13,7 +13,7 @@ const HeaderLink = ({ href = '', children, onClick }: HeaderLinkProps) => {
   return (
     <Link
       href={href}
-      className='text-xl text-center cursor-pointer font-extralight text-light-green p-8 w-full hover:bg-green hover:text-dark-green'
+      className='w-full cursor-pointer bg-dark-green p-8 text-center text-xl font-extralight text-light-green hover:bg-green hover:text-dark-green focus:bg-dark-green focus:text-light-green'
       onClick={onClick}
     >
       {children}
