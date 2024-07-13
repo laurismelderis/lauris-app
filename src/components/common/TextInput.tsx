@@ -3,6 +3,7 @@
 import React from 'react'
 
 interface TextInputProps {
+  title?: string
   placeholder?: string
   value?: string
   defaultValue?: string
@@ -11,18 +12,11 @@ interface TextInputProps {
   className?: React.ComponentProps<'input'>['className']
   variant?: 'default' | 'transparent'
   type?: 'text' | 'number'
-}
-
-const style = {
-  default: 'p-2 text-dark-green',
-  transparent: `
-    text-light-green bg-transparent border-b-2 border-transparent 
-    focus-visible:outline-none focus-visible:border-green focus-visible:border-b-2
-    hover:border-light-green hover:border-b-2
-  `,
+  immutable?: boolean
 }
 
 const TextInput = ({
+  title = '',
   value,
   defaultValue,
   name = '',
@@ -31,7 +25,17 @@ const TextInput = ({
   className = '',
   variant = 'default',
   type = 'text',
+  immutable = false,
 }: TextInputProps) => {
+  const style = {
+    default: 'p-2 text-dark-green',
+    transparent: `
+      text-light-green bg-transparent border-b-2 border-transparent 
+      focus-visible:outline-none focus-visible:border-green focus-visible:border-b-2
+      ${!immutable ? 'hover:border-light-green hover:border-b-2' : ''}
+    `,
+  }
+
   return (
     <input
       name={name}
@@ -40,7 +44,9 @@ const TextInput = ({
       defaultValue={defaultValue}
       placeholder={placeholder}
       className={`${style[variant]} ${className}`}
-      onChange={onChange}
+      onChange={!immutable ? onChange : () => {}}
+      disabled={immutable}
+      title={immutable ? 'Immutable field' : title}
     />
   )
 }

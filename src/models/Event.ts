@@ -15,6 +15,7 @@ export interface IEvent {
   description?: string
   descriptionType: DescriptionTypes
   isDraft: boolean
+  slug: string
 }
 
 const eventSchema = new Schema<IEvent>({
@@ -31,6 +32,12 @@ const eventSchema = new Schema<IEvent>({
   isDraft: {
     type: Boolean,
     default: false,
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true,
+    immutable: true,
   },
 })
 
