@@ -8,30 +8,22 @@ import { getMonthNumber } from '@/src/utils/helpers'
 import EditableDate from './EditableDate'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 
-type EventForm = {
-  day?: string | null
-  month?: string
-  year?: string
-  title?: string
-  description?: string
-  descriptionType?: DescriptionTypes
+type EventFormProps = Omit<IEvent, '_id'> & {
   onSave?: (currentEvent: Omit<IEvent, '_id'>) => void
   onCancel?: () => void
   onDelete?: () => void
-  isDraft?: boolean
 }
 
-const EventForm = (props: EventForm) => {
-  const [title, setTitle] = useState(props.title || '')
-  const [day, setDay] = useState(props.day)
-  const [month, setMonth] = useState(props.month || '0')
-  const [year, setYear] = useState(props.year || '2000')
-  const [isDraft, setIsDraft] = useState(props.isDraft || false)
+const EventForm = (props: EventFormProps) => {
+  const [slug, setSlug] = useState(props.slug)
+  const [title, setTitle] = useState(props.title)
+  const [day, setDay] = useState<string>(props?.day?.toString() || '1')
+  const [month, setMonth] = useState<string>(props?.month?.toString())
+  const [year, setYear] = useState<string>(props?.year?.toString())
+  const [isDraft, setIsDraft] = useState(props.isDraft)
 
-  const [description, setDescription] = useState(props.description || '')
-  const [descriptionType, setDescriptionType] = useState(
-    props.descriptionType || DescriptionTypes.Raw
-  )
+  const [description, setDescription] = useState(props.description)
+  const [descriptionType, setDescriptionType] = useState(props.descriptionType)
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value)
@@ -41,6 +33,9 @@ const EventForm = (props: EventForm) => {
   ) => setDescriptionType(e.target.value as DescriptionTypes)
   const handleDayChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setDay(e.target.value)
+  const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSlug(e.target.value)
+  }
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMonth(getMonthNumber(e.target.value).toString())
   }
@@ -61,6 +56,7 @@ const EventForm = (props: EventForm) => {
         description,
         descriptionType,
         isDraft,
+        slug,
       })
     }
   }
@@ -82,7 +78,19 @@ const EventForm = (props: EventForm) => {
 
   return (
     <div className='flex flex-col items-center gap-4'>
-      <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8'>
+      <div className='flex w-full flex-row items-start justify-start gap-4'>
+        <label className='w-48 border-b-2 border-transparent text-right'>
+          Provide slug:
+        </label>
+        <TextInput
+          variant='transparent'
+          placeholder='Slug'
+          value={slug}
+          onChange={handleSlugChange}
+          immutable={props.slug.length !== 0}
+        />
+      </div>
+      <div className='container flex min-h-20 flex-col gap-8 text-3xl md:flex-row md:text-5xl'>
         <EditableDate
           day={day}
           month={month}
@@ -91,7 +99,7 @@ const EventForm = (props: EventForm) => {
           onMonthChange={handleMonthChange}
           onYearChange={handleYearChange}
         />
-        <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-green'>
+        <div className='container flex flex-col gap-4 border-b-2 border-green pb-8 md:border-none'>
           <TextInput
             variant='transparent'
             placeholder='Title'
@@ -105,9 +113,9 @@ const EventForm = (props: EventForm) => {
           />
         </div>
       </div>
-      <div className='w-full flex flex-col items-start justify-start gap-4'>
-        <div className='flex flex-row gap-4 items-start justify-start w-full'>
-          <label className='w-48 text-right border-b-2 border-transparent'>
+      <div className='flex w-full flex-col items-start justify-start gap-4'>
+        <div className='flex w-full flex-row items-start justify-start gap-4'>
+          <label className='w-48 border-b-2 border-transparent text-right'>
             Select description type:
           </label>
           <SelectInput
@@ -118,8 +126,8 @@ const EventForm = (props: EventForm) => {
             name='descriptionType'
           />
         </div>
-        <div className='flex flex-row gap-4 items-start justify-start w-full'>
-          <label className='w-48 text-right border-b-2 border-transparent'>
+        <div className='flex w-full flex-row items-start justify-start gap-4'>
+          <label className='w-48 border-b-2 border-transparent text-right'>
             Is draft:
           </label>
           <SelectInput

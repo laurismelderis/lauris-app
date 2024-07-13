@@ -9,7 +9,7 @@ const EventPreview = ({
   description,
 }: {
   descriptionType: DescriptionTypes
-  description: string
+  description?: string
 }) => {
   return (() => {
     switch (descriptionType) {
@@ -19,7 +19,7 @@ const EventPreview = ({
         return (
           <div
             className='text-light-green'
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{ __html: description || '' }}
           />
         )
       default:

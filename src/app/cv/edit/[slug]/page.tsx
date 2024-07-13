@@ -20,19 +20,6 @@ const EventPage = async ({ params: { slug } }: EventPageProps) => {
     notFound()
   }
 
-  const {
-    _id,
-    day,
-    month,
-    year,
-    title,
-    description,
-    descriptionType,
-    isDraft,
-  } = event
-
-  console.log(event)
-
   if (!event || Object.keys(event).length === 0) {
     notFound()
   }
@@ -43,16 +30,7 @@ const EventPage = async ({ params: { slug } }: EventPageProps) => {
 
   return (
     <div className='relative mx-auto flex w-4/6 flex-col gap-4'>
-      <EditEventForm
-        id={_id}
-        day={day?.toString()}
-        month={month.toString()}
-        year={year.toString()}
-        title={title}
-        description={description}
-        descriptionType={descriptionType}
-        isDraft={isDraft}
-      />
+      <EditEventForm {...JSON.parse(JSON.stringify(event))} />
     </div>
   )
 }
