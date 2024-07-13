@@ -30,6 +30,7 @@ const EventList = async () => {
               event={JSON.parse(JSON.stringify(event))}
               shortDescription={isLongText}
               showReadMore={isLongText}
+              editEnabled
             />
           )
         })}

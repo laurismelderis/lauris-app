@@ -10,15 +10,17 @@ import ShowMore from './ShowMore'
 import Description from './Description'
 
 type EventProps = {
-  event: IEvent
+  event: Omit<IEvent, '_id'>
   showReadMore?: boolean
   shortDescription?: boolean
+  editEnabled?: boolean
 }
 
 const Event = ({
   event,
   showReadMore = false,
   shortDescription = false,
+  editEnabled = false,
 }: EventProps) => {
   const {
     isDraft,
@@ -41,7 +43,13 @@ const Event = ({
     <div className='flex flex-col'>
       {isDraft && <div className='italic text-green underline'>Draft</div>}
       <div className='container flex min-h-20 flex-col gap-8 text-3xl text-light-green md:flex-row md:text-5xl'>
-        <Date slug={slug} day={day} month={month} year={year} />
+        <Date
+          slug={slug}
+          day={day}
+          month={month}
+          year={year}
+          editEnabled={editEnabled}
+        />
         <div className='container flex flex-col gap-4 border-b-2 border-green pb-8 md:border-none'>
           <div>{title}</div>
           <Description

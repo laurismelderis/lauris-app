@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import EventPreview from './EventPreview'
+import Event from '../Event'
 import EventFormDescription from './EventFormDescription'
-import { Button, SelectInput, TextInput } from '../../../components/common'
+import { Button, SelectInput, TextInput } from '@/src/components/common'
 import { getMonthNumber } from '@/src/utils/helpers'
 import EditableDate from './EditableDate'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
@@ -77,7 +77,7 @@ const EventForm = (props: EventFormProps) => {
   }
 
   return (
-    <div className='flex flex-col items-center gap-4'>
+    <div className='flex flex-col items-center gap-8'>
       <div className='flex w-full flex-row items-start justify-start gap-4'>
         <label className='w-48 border-b-2 border-transparent text-right'>
           Provide slug:
@@ -90,7 +90,7 @@ const EventForm = (props: EventFormProps) => {
           immutable={props.slug.length !== 0}
         />
       </div>
-      <div className='container flex min-h-20 flex-col gap-8 text-3xl md:flex-row md:text-5xl'>
+      <div className='flex min-h-20 w-full flex-col gap-8 text-3xl md:flex-row md:text-5xl'>
         <EditableDate
           day={day}
           month={month}
@@ -139,10 +139,22 @@ const EventForm = (props: EventFormProps) => {
           />
         </div>
       </div>
-      <div>
-        <EventPreview
-          descriptionType={descriptionType}
-          description={description}
+      <div className='w-full border-b-4 pb-4 text-3xl text-light-green md:text-5xl'>
+        Preview
+      </div>
+      <div className='w-full'>
+        <Event
+          showReadMore={false}
+          shortDescription={false}
+          event={{
+            isDraft: false,
+            descriptionType,
+            description,
+            month: parseInt(month, 10),
+            title,
+            year: parseInt(year, 10),
+            slug,
+          }}
         />
       </div>
       <div className='flex gap-4'>

@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
-import EventForm from './EventForm'
+import EventForm from '../../(components)/EventForm'
 import { useRouter } from 'next/navigation'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
-import Notification from '../../../components/common/Notification'
+import Notification from '@/src/app/(components)/Notification'
 
 const AddEventForm = () => {
   const router = useRouter()

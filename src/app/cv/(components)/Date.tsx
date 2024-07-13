@@ -12,9 +12,10 @@ interface DateProps {
   day?: number | null
   month: number
   year: number
+  editEnabled?: boolean
 }
 
-const Date = ({ slug, day, month, year }: DateProps) => {
+const Date = ({ slug, day, month, year, editEnabled = false }: DateProps) => {
   const router = useRouter()
 
   const dateRef = useRef<HTMLDivElement>(null)
@@ -41,11 +42,13 @@ const Date = ({ slug, day, month, year }: DateProps) => {
     >
       <div className='flex items-center justify-start'>
         <div className='min-w-32 text-green'>{year}</div>
-        <Protect role='org:admin'>
-          <div onClick={() => router.push(`/cv/edit/${slug}`)}>
-            <IconPen className='cursor-pointer hover:fill-light-green' />
-          </div>
-        </Protect>
+        {editEnabled ? (
+          <Protect role='org:admin'>
+            <div onClick={() => router.push(`/cv/edit/${slug}`)}>
+              <IconPen className='cursor-pointer hover:fill-light-green' />
+            </div>
+          </Protect>
+        ) : null}
       </div>
       <div className={`text-lg font-light`}>
         {day ? `${day}${dayPrefix} of ${monthName}` : monthName}

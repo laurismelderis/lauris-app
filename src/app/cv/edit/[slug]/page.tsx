@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { IEvent } from '@/src/models/Event'
 import { auth } from '@clerk/nextjs/server'
 import Unauthorized from '@/src/components/Unauthorized'
-import EditEventForm from '@/src/app/cv/(components)/EditEventForm'
+import EditEventForm from './(components)/EditEventForm'
 
 type EditEventPageProps = {
   params: { slug: string }
