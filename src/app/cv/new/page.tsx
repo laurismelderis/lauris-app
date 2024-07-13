@@ -1,7 +1,9 @@
 import React from 'react'
 import { auth } from '@clerk/nextjs/server'
+
 import Unauthorized from '@/src/components/Unauthorized'
-import AddEventForm from '@/src/app/cv/(components)/AddEventForm'
+
+import AddEventForm from './(components)/AddEventForm'
 
 const NewCV = () => {
   const { has } = auth()

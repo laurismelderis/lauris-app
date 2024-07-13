@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { getMonthName, months } from '@/src/utils/helpers'
-import { SelectInput, TextInput } from '../../../components/common'
+import { SelectInput, TextInput } from '@/src/components/common'
 import _ from 'lodash'
 
 interface EditableDateProps {
@@ -26,10 +26,7 @@ const EditableDate = ({
 
   return (
     <div
-      className={`
-    flex flex-col text-light-green transition-all duration-[2s] 
-    ${'opacity-100 translate-x-0'}
-  `}
+      className={`flex flex-col text-light-green transition-all duration-[2s] ${'translate-x-0 opacity-100'} `}
     >
       <div className='flex items-center justify-start'>
         <TextInput
@@ -43,7 +40,7 @@ const EditableDate = ({
         />
       </div>
       <div
-        className={`flex items-center justify-between text-lg font-light w-full`}
+        className={`flex w-full items-center justify-between text-lg font-light`}
       >
         <div className='flex items-center'>
           <SelectInput

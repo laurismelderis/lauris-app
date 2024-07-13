@@ -1,33 +1,38 @@
 'use client'
 
 import React from 'react'
-import Date from './Date'
-
-import 'katex/dist/katex.min.css'
-import Markdown from '../../../components/common/Markdown'
 import { useAuth } from '@clerk/nextjs'
+import 'katex/dist/katex.min.css'
 
-interface EventProps {
-  id: string
-  title?: string
-  children?: string
-  day?: number | null
-  descriptionType: 'HTML' | 'MARKDOWN' | 'RAW'
-  month: number
-  year: number
-  isDraft: boolean
+import { IEvent } from '@/src/models/Event'
+import Date from './Date'
+import ShowMore from './ShowMore'
+import Description from './Description'
+
+type EventProps = {
+  event: Omit<IEvent, '_id'>
+  showReadMore?: boolean
+  shortDescription?: boolean
+  editEnabled?: boolean
 }
 
 const Event = ({
-  id,
-  title,
-  children,
-  day,
-  month,
-  year,
-  descriptionType,
-  isDraft,
+  event,
+  showReadMore = false,
+  shortDescription = false,
+  editEnabled = false,
 }: EventProps) => {
+  const {
+    isDraft,
+    day,
+    month,
+    year,
+    title,
+    descriptionType,
+    description,
+    slug,
+  } = event
+
   const { orgRole } = useAuth()
 
   if (isDraft && orgRole !== 'org:admin') {
@@ -37,24 +42,23 @@ const Event = ({
   return (
     <div className='flex flex-col'>
       {isDraft && <div className='italic text-green underline'>Draft</div>}
-      <div className='container flex flex-col md:flex-row min-h-20 text-3xl md:text-5xl gap-8 text-light-green'>
-        <Date id={id} day={day} month={month} year={year} />
-        <div className='container flex flex-col gap-4 pb-8 border-b-2 md:border-none border-green'>
+      <div className='container flex min-h-20 flex-col gap-8 text-3xl text-light-green md:flex-row md:text-5xl'>
+        <Date
+          slug={slug}
+          day={day}
+          month={month}
+          year={year}
+          editEnabled={editEnabled}
+        />
+        <div className='container flex flex-col gap-4 border-b-2 border-green pb-8 md:border-none'>
           <div>{title}</div>
-          <div className='text-base md:text-lg font-light'>
-            {(() => {
-              switch (descriptionType) {
-                case 'MARKDOWN':
-                  return <Markdown>{children}</Markdown>
-                case 'HTML':
-                  return (
-                    <div dangerouslySetInnerHTML={{ __html: children || '' }} />
-                  )
-                default:
-                  return children
-              }
-            })()}
-          </div>
+          <Description
+            type={descriptionType}
+            shortDescription={shortDescription}
+          >
+            {description}
+          </Description>
+          {showReadMore && <ShowMore href={`/cv/${slug}`} />}
         </div>
       </div>
     </div>

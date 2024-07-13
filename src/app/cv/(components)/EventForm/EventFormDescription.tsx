@@ -4,7 +4,7 @@ import React from 'react'
 import { DescriptionTypes } from '@/src/models/Event'
 import ReactCodeMirror from '@uiw/react-codemirror'
 import { EditorView } from '@codemirror/view'
-import { TextareaInput } from '../../../components/common'
+import { TextareaInput } from '@/src/components/common'
 import { html } from '@codemirror/lang-html'
 
 const EventFormDescription = ({
@@ -13,7 +13,7 @@ const EventFormDescription = ({
   onChange,
 }: {
   descriptionType: DescriptionTypes
-  value: string
+  value?: string
   onChange?: (value: string) => void
 }) =>
   descriptionType === 'HTML' ? (
@@ -30,7 +30,7 @@ const EventFormDescription = ({
       name='description'
       variant='transparent'
       defaultValue={value}
-      className='text-base md:text-lg font-light'
+      className='text-base font-light md:text-lg'
       placeholder='Description'
       rows={8}
       onChange={
