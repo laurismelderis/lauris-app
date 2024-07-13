@@ -4,7 +4,7 @@ import React from 'react'
 import { DescriptionTypes } from '@/src/models/Event'
 import ReactCodeMirror from '@uiw/react-codemirror'
 import { EditorView } from '@codemirror/view'
-import { TextareaInput } from '../../../components/common'
+import { TextareaInput } from '@/src/components/common'
 import { html } from '@codemirror/lang-html'
 
 const EventFormDescription = ({

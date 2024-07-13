@@ -2,6 +2,7 @@ import React from 'react'
 import { IEvent } from '@/src/models/Event'
 import { getEvents } from '@/src/libs/cv'
 import Event from './Event'
+import config from '../../config'
 
 export const dynamic = 'force-dynamic'
 
@@ -17,9 +18,22 @@ const EventList = async () => {
 
           return date1 - date2
         })
-        .map((event: IEvent) => (
-          <Event key={event._id} event={JSON.parse(JSON.stringify(event))} />
-        ))}
+        .map((event: IEvent) => {
+          const isLongText = Boolean(
+            event?.description &&
+              event.description.length > config.TRUNCATED_TEXT_LENGTH
+          )
+
+          return (
+            <Event
+              key={event._id}
+              event={JSON.parse(JSON.stringify(event))}
+              shortDescription={isLongText}
+              showReadMore={isLongText}
+              editEnabled
+            />
+          )
+        })}
     </div>
   )
 }

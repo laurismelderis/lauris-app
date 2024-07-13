@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
-import EventForm from './EventForm'
-import { IEvent } from '@/src/models/Event'
 import { useRouter } from 'next/navigation'
-import Notification from '../../../components/common/Notification'
+import EventForm from '@/src/app/cv/(components)/EventForm'
+import Notification from '@/src/app/(components)/Notification'
+import { IEvent } from '@/src/models/Event'
 
 const EditEventForm = (event: IEvent) => {
   const router = useRouter()
@@ -58,7 +58,7 @@ const EditEventForm = (event: IEvent) => {
   }
 
   const handleCancel = () => {
-    router.push('/cv')
+    router.back()
   }
 
   return (
