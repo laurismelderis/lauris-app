@@ -1,14 +1,25 @@
 'use client'
 
 import React from 'react'
-import Date from './Date'
-
-import 'katex/dist/katex.min.css'
-import Markdown from '../../../components/common/Markdown'
 import { useAuth } from '@clerk/nextjs'
-import { IEvent } from '@/src/models/Event'
+import 'katex/dist/katex.min.css'
 
-const Event = ({ event }: { event: IEvent }) => {
+import { IEvent } from '@/src/models/Event'
+import Date from './Date'
+import ShowMore from './ShowMore'
+import Description from './Description'
+
+type EventProps = {
+  event: IEvent
+  showReadMore?: boolean
+  shortDescription?: boolean
+}
+
+const Event = ({
+  event,
+  showReadMore = false,
+  shortDescription = false,
+}: EventProps) => {
   const {
     isDraft,
     day,
@@ -33,22 +44,13 @@ const Event = ({ event }: { event: IEvent }) => {
         <Date slug={slug} day={day} month={month} year={year} />
         <div className='container flex flex-col gap-4 border-b-2 border-green pb-8 md:border-none'>
           <div>{title}</div>
-          <div className='text-base font-light md:text-lg'>
-            {(() => {
-              switch (descriptionType) {
-                case 'MARKDOWN':
-                  return <Markdown>{description}</Markdown>
-                case 'HTML':
-                  return (
-                    <div
-                      dangerouslySetInnerHTML={{ __html: description || '' }}
-                    />
-                  )
-                default:
-                  return description
-              }
-            })()}
-          </div>
+          <Description
+            type={descriptionType}
+            shortDescription={shortDescription}
+          >
+            {description}
+          </Description>
+          {showReadMore && <ShowMore href={`/cv/${slug}`} />}
         </div>
       </div>
     </div>

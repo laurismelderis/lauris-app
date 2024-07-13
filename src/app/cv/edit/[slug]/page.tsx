@@ -6,11 +6,11 @@ import { auth } from '@clerk/nextjs/server'
 import Unauthorized from '@/src/components/Unauthorized'
 import EditEventForm from '@/src/app/cv/(components)/EditEventForm'
 
-interface EventPageProps {
+type EditEventPageProps = {
   params: { slug: string }
 }
 
-const EventPage = async ({ params: { slug } }: EventPageProps) => {
+const EditEventPage = async ({ params: { slug } }: EditEventPageProps) => {
   const { has } = auth()
   let event: IEvent
 
@@ -35,4 +35,4 @@ const EventPage = async ({ params: { slug } }: EventPageProps) => {
   )
 }
 
-export default EventPage
+export default EditEventPage
