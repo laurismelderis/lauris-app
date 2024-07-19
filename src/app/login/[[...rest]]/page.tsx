@@ -11,9 +11,16 @@ const Login = async () => {
   if (!user) {
     return (
       <div
-        className={`flex flex-col justify-center items-center text-green ${pageHeightClassName}`}
+        className={`flex flex-col items-center justify-center text-green ${pageHeightClassName}`}
       >
-        <SignIn />
+        <SignIn
+          appearance={{
+            elements: {
+              dividerRow: 'hidden',
+              form: 'hidden',
+            },
+          }}
+        />
       </div>
     )
   }
