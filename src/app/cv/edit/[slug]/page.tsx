@@ -2,16 +2,14 @@ import React from 'react'
 import { getEvent } from '@/src/libs/cv'
 import { notFound } from 'next/navigation'
 import { IEvent } from '@/src/models/Event'
-import { auth } from '@clerk/nextjs/server'
-import Unauthorized from '@/src/components/Unauthorized'
 import EditEventForm from './(components)/EditEventForm'
+import withAuth from '@/src/app/(components)/withAuth'
 
 type EditEventPageProps = {
   params: { slug: string }
 }
 
 const EditEventPage = async ({ params: { slug } }: EditEventPageProps) => {
-  const { has } = auth()
   let event: IEvent
 
   try {
@@ -24,10 +22,6 @@ const EditEventPage = async ({ params: { slug } }: EditEventPageProps) => {
     notFound()
   }
 
-  const isAdmin = has({ role: 'org:admin' })
-
-  if (!isAdmin) return <Unauthorized />
-
   return (
     <div className='relative mx-auto flex w-4/6 flex-col gap-4'>
       <EditEventForm {...JSON.parse(JSON.stringify(event))} />
@@ -35,4 +29,4 @@ const EditEventPage = async ({ params: { slug } }: EditEventPageProps) => {
   )
 }
 
-export default EditEventPage
+export default withAuth(EditEventPage)
