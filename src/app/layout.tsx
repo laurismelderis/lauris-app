@@ -18,7 +18,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        elements: {
+          footer: 'hidden',
+        },
+      }}
+    >
       <StoreProvider>
         <html lang='en'>
           <body className={lexend.className}>
