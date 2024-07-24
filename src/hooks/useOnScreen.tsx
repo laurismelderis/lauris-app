@@ -12,12 +12,23 @@ const useOnScreen = (ref: React.RefObject<HTMLElement>) => {
         setIntersecting(entry.isIntersecting)
       )
     )
+    return () => {
+      if (observer) {
+        observer.disconnect()
+      }
+    }
   }, [])
 
   useEffect(() => {
     if (ref.current && observer) {
       observer.observe(ref.current)
       return () => observer?.disconnect()
+    }
+
+    return () => {
+      if (observer) {
+        observer.disconnect()
+      }
     }
   }, [observer])
 
