@@ -65,7 +65,7 @@ const EditEventForm = (event: IEvent) => {
     <>
       <Notification error={error} />
       <EventForm
-        {...event}
+        event={{ ...event }}
         onSave={handleUpdateEvent}
         onCancel={handleCancel}
         onDelete={handleDelete}
