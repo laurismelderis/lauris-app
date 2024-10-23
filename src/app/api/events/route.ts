@@ -5,8 +5,8 @@ import { IEvent } from '@/src/models/Event'
 
 export const POST = async (req: NextRequest) => {
   try {
-    // const { status, message } = auth(req)
-    // if (status !== 200) return NextResponse.json({ message }, { status })
+    const { status, message } = auth(req)
+    if (status !== 200) return NextResponse.json({ message }, { status })
 
     const body: IEvent = await req.json()
 
