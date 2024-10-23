@@ -9,6 +9,30 @@ type EventPageProps = {
   params: { slug: string }
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  try {
+    const event = (await getEvent({ value: params.slug, type: 'slug' })) || {}
+
+    if (event && Object.keys(event).length > 0) {
+      return {
+        title: event.title,
+        description: event.description,
+      }
+    }
+
+    throw new Error('Not found')
+  } catch (e) {
+    return {
+      title: 'Not found',
+      description: 'The page you are looking for does not exist.',
+    }
+  }
+}
+
 const EventPage = async ({ params: { slug } }: EventPageProps) => {
   let event: IEvent
 
