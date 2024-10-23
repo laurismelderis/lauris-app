@@ -16,6 +16,8 @@ export interface IEvent {
   descriptionType: DescriptionTypes
   isDraft: boolean
   slug: string
+  createdAt: Date
+  lastModified: Date
 }
 
 const eventSchema = new Schema<IEvent>({
@@ -38,6 +40,15 @@ const eventSchema = new Schema<IEvent>({
     required: true,
     unique: true,
     immutable: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    immutable: true,
+  },
+  lastModified: {
+    type: Date,
+    default: Date.now,
   },
 })
 
