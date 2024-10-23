@@ -1,4 +1,4 @@
-import Event from '@/src/models/Event'
+import Event, { IEvent } from '@/src/models/Event'
 import connectMongoDb from '../mongodb'
 
 type getEventProps = {
@@ -6,7 +6,7 @@ type getEventProps = {
   type: 'id' | 'slug'
 }
 
-const getEvent = async ({ value, type }: getEventProps) => {
+const getEvent = async ({ value, type }: getEventProps): Promise<IEvent> => {
   try {
     if (!type) {
       throw new Error('Missing property "type"')
