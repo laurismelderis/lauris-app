@@ -7,8 +7,13 @@ const updateEvent = async (id: string, event: UpdateEventProps) => {
   try {
     await connectMongoDb()
 
-    const newEvent = new Event({
+    const newEventValues = {
       ...event,
+      lastModified: new Date(),
+    }
+
+    const newEvent = new Event({
+      ...newEventValues,
     })
 
     const error = newEvent.validateSync()
@@ -18,7 +23,7 @@ const updateEvent = async (id: string, event: UpdateEventProps) => {
     if (!id) throw new Error('Missing event id')
 
     const response = await Event.findByIdAndUpdate(id, {
-      ...event,
+      ...newEventValues,
     })
 
     return response
