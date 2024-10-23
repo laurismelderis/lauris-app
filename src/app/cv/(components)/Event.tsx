@@ -10,7 +10,7 @@ import ShowMore from './ShowMore'
 import Description from './Description'
 
 type EventProps = {
-  event: Omit<IEvent, '_id'>
+  event: IEvent
   showReadMore?: boolean
   shortDescription?: boolean
   editEnabled?: boolean

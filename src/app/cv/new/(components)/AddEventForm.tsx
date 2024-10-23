@@ -10,7 +10,7 @@ const AddEventForm = () => {
   const router = useRouter()
   const [error, setError] = useState<string>()
 
-  const handleSaveEvent = async (currentEvent: Omit<IEvent, '_id'>) => {
+  const handleSaveEvent = async (currentEvent: IEvent) => {
     try {
       const resp = await fetch('/api/events', {
         method: 'POST',
@@ -41,12 +41,17 @@ const AddEventForm = () => {
     <>
       <Notification error={error} />
       <EventForm
-        slug=''
-        descriptionType={DescriptionTypes.Raw}
-        isDraft={true}
-        month={0}
-        title=''
-        year={2000}
+        event={{
+          _id: null,
+          slug: '',
+          descriptionType: DescriptionTypes.Raw,
+          isDraft: true,
+          month: 0,
+          title: '',
+          year: 2000,
+          lastModified: null,
+          createdAt: null,
+        }}
         onSave={handleSaveEvent}
         onCancel={handleCancel}
       />

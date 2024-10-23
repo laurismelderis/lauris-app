@@ -7,7 +7,7 @@ export enum DescriptionTypes {
 }
 
 export interface IEvent {
-  _id: string
+  _id: string | null
   day?: number | null
   month: number
   year: number
@@ -16,8 +16,8 @@ export interface IEvent {
   descriptionType: DescriptionTypes
   isDraft: boolean
   slug: string
-  createdAt: Date
-  lastModified: Date
+  createdAt: Date | null
+  lastModified: Date | null
 }
 
 const eventSchema = new Schema<IEvent>({
