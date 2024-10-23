@@ -8,22 +8,23 @@ import { getMonthNumber } from '@/src/utils/helpers'
 import EditableDate from './EditableDate'
 import { DescriptionTypes, IEvent } from '@/src/models/Event'
 
-type EventFormProps = Omit<IEvent, '_id'> & {
-  onSave?: (currentEvent: Omit<IEvent, '_id'>) => void
+type EventFormProps = {
+  event: IEvent
+  onSave?: (currentEvent: IEvent) => void
   onCancel?: () => void
   onDelete?: () => void
 }
 
-const EventForm = (props: EventFormProps) => {
-  const [slug, setSlug] = useState(props.slug)
-  const [title, setTitle] = useState(props.title)
-  const [day, setDay] = useState<string>(props?.day?.toString() || '1')
-  const [month, setMonth] = useState<string>(props?.month?.toString())
-  const [year, setYear] = useState<string>(props?.year?.toString())
-  const [isDraft, setIsDraft] = useState(props.isDraft)
+const EventForm = ({ event, onSave, onCancel, onDelete }: EventFormProps) => {
+  const [slug, setSlug] = useState(event.slug)
+  const [title, setTitle] = useState(event.title)
+  const [day, setDay] = useState<string>(event?.day?.toString() || '1')
+  const [month, setMonth] = useState<string>(event?.month?.toString())
+  const [year, setYear] = useState<string>(event?.year?.toString())
+  const [isDraft, setIsDraft] = useState(event.isDraft)
 
-  const [description, setDescription] = useState(props.description)
-  const [descriptionType, setDescriptionType] = useState(props.descriptionType)
+  const [description, setDescription] = useState(event.description)
+  const [descriptionType, setDescriptionType] = useState(event.descriptionType)
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value)
@@ -45,10 +46,9 @@ const EventForm = (props: EventFormProps) => {
     setIsDraft(e.target.value === 'Yes' ? true : false)
 
   const handleSave = () => {
-    const { onSave } = props
-
     if (onSave) {
       onSave({
+        ...event,
         day: day ? parseInt(day, 10) : null,
         month: parseInt(month, 10),
         year: parseInt(year, 10),
@@ -62,15 +62,12 @@ const EventForm = (props: EventFormProps) => {
   }
 
   const handleDelete = () => {
-    const { onDelete } = props
-
     if (onDelete) {
       onDelete()
     }
   }
 
   const handleCancel = () => {
-    const { onCancel } = props
     if (onCancel) {
       onCancel()
     }
@@ -87,7 +84,7 @@ const EventForm = (props: EventFormProps) => {
           placeholder='Slug'
           value={slug}
           onChange={handleSlugChange}
-          immutable={props.slug.length !== 0}
+          immutable={event.slug.length !== 0}
         />
       </div>
       <div className='flex min-h-20 w-full flex-col gap-8 text-3xl md:flex-row md:text-5xl'>
@@ -147,6 +144,8 @@ const EventForm = (props: EventFormProps) => {
           showReadMore={false}
           shortDescription={false}
           event={{
+            ...event,
+            _id: null,
             isDraft: false,
             descriptionType,
             description,
@@ -161,7 +160,7 @@ const EventForm = (props: EventFormProps) => {
         <Button type='primary' value='success' onClick={handleSave}>
           Save
         </Button>
-        {props?.onDelete ? (
+        {onDelete ? (
           <Button type='error' value='failure' onClick={handleDelete}>
             Delete
           </Button>
