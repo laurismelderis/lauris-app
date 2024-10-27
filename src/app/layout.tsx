@@ -14,8 +14,10 @@ export const metadata: Metadata = {
   description: 'Personal Lauris Melderis website.',
   robots: {
     index: true,
+    follow: true,
     googleBot: {
       index: true,
+      follow: true,
     },
   },
 }
