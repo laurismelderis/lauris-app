@@ -12,6 +12,12 @@ export const metadata: Metadata = {
   keywords: ['Lauris', 'Melderis', 'Lauris Melderis', 'Profile', 'Portfolio'],
   title: { default: 'Lauris Melderis', template: '%s | Lauris Melderis' },
   description: 'Personal Lauris Melderis website.',
+  robots: {
+    index: true,
+    googleBot: {
+      index: true,
+    },
+  },
 }
 
 export default function RootLayout({
