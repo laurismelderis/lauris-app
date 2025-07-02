@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Lexend } from 'next/font/google'
 import './globals.css'
-import Header from '../components/Header'
+// import Header from '../components/Header'
 import { StoreProvider } from '../store/StoreProvider'
 import { ClerkProvider } from '@clerk/nextjs'
 
@@ -38,8 +38,8 @@ export default function RootLayout({
       <StoreProvider>
         <html lang='en'>
           <body className={lexend.className}>
-            <Header />
-            <div className='relative py-8'>{children}</div>
+            {/* <Header /> */}
+            <div className='relative pb-8'>{children}</div>
           </body>
         </html>
       </StoreProvider>

@@ -11,9 +11,11 @@ interface Colors {
 
 export const colors: Colors = {
   transparent: 'transparent',
-  'dark-green': '#081C15',
+  // 'dark-green': '#081C15',
+  'dark-green': '#0C3C01',
   gray: '#606470',
-  green: '#D9ED92',
+  // green: '#D9ED92',
+  green: '#F1F2ED',
   'light-green': '#E0E5C6',
   red: '#F21515',
 }

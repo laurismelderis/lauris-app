@@ -41,6 +41,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: theme('colors.dark-green');
+  background-color: theme('colors.dark-green');
   height: 100dvh;
 }
 
